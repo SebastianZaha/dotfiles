@@ -40,6 +40,11 @@
 (set-default 'tab-width 4)
 (set-default 'c-basic-offset 4)
 
+;; Don't auto wrap
+(setq-default fill-column 160)
+(setq auto-fill-mode 0)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
