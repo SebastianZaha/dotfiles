@@ -49,6 +49,7 @@
 ;; Editing
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "C-c q") 'join-line)
+(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 
 ;; Coding tools
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -68,13 +69,12 @@
 
 ;; TODO
 ;; Navigation
-(global-set-key (kbd "C-c f") 'find-file-in-project)
-;; read about this, create a an example .dir-locals.el project
+(global-set-key (kbd "s-t") 'ffip)
+(global-set-key (kbd "C-c a") 'ack)
 
 ;; grep (ack) in project
 
 ;; jump to definition
-;;   - read about etags configuration
 
 ;; svn / git integration - browse history, review changes before commit
 
