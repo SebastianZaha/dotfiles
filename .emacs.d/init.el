@@ -16,11 +16,11 @@
     (package-install p)))
 
 
-;; remove all bells
+;; Remove all bells
 (setq ring-bell-function 'ignore)
 (setq initial-scratch-message nil)
 
-; encoding
+;; File encoding
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -35,15 +35,48 @@
 ;; Server
 (server-start)
 
-;; Programming
-
-(set-default 'tab-width 4)
-(set-default 'c-basic-offset 4)
-
 ;; Don't auto wrap
 (setq-default fill-column 160)
 (setq auto-fill-mode 0)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Programming
+
+;; Cosmetics
+(set-default 'tab-width 4)
+(set-default 'c-basic-offset 4)
+
+;; Editing
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "C-c q") 'join-line)
+
+;; Coding tools
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; Jump to a column on current line. Useful when debugging some of those obnoxious js stack traces
+(defun goto-column-number (number)
+  "Untabify, and go to a column number within the current line (1 is beginning of the line)."
+  (interactive "nColumn number (<nr> - 1 == C) ? ")
+  (beginning-of-line)
+  (untabify (point-min) (point-max))
+  (while (> number 1)
+    (if (eolp)
+        (insert ? )
+      (forward-char))
+    (setq number (1- number))))
+
+
+;; TODO
+;; Navigation
+(global-set-key (kbd "C-c f") 'find-file-in-project)
+;; read about this, create a an example .dir-locals.el project
+
+;; grep (ack) in project
+
+;; jump to definition
+;;   - read about etags configuration
+
+;; svn / git integration - browse history, review changes before commit
 
 
 (custom-set-variables

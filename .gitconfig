@@ -1,3 +1,9 @@
 [user]
 	name = Sebastian Zaha
 	email = sebastian.zaha@gmail.com
+[core]
+	editor = emacsclient
+[color]
+	diff = auto
+	status = auto
+	branch = auto
