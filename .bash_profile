@@ -4,14 +4,16 @@
 # Some aliases
 alias ll="ls -l -h -a -G"
 alias grep="grep --color=auto"
-alias em="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -nq"
+alias e="emacsclient"
 
 alias gst="git status"
 alias gco="git commit -a -m"
 alias gpu="git push"
+alias b="bundle exec"
 
 # Variables
-export PATH=$HOME/bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$HOME/.rvm/bin:$PATH
+# export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 export EDITOR="emacsclient"
 
 # Initialize RVM
