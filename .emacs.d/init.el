@@ -1,5 +1,4 @@
-;; Manage packages. Install the following if they do not exist. Handy
-;; on fresh installs.
+;; Manage packages. Install the following if they do not exist. Handy on fresh installs.
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
@@ -15,6 +14,11 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; Paths
+(setq shell-file-name "bash")
+(setq shell-command-switch "-ic")
+;; For macports
+(setq exec-path (append exec-path '("/opt/local/bin/")))
 
 ;; Remove all bells
 (setq ring-bell-function 'ignore)
@@ -25,6 +29,18 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
+
+;; Romanian special characters. Although defined by the OSX keymap, they're ignored in emacs.
+(global-set-key (kbd "M-s") (kbd "ș"))
+(global-set-key (kbd "M-t") (kbd "ț"))
+(global-set-key (kbd "M-i") (kbd "i"))
+(global-set-key (kbd "M-a") (kbd "ă"))
+(global-set-key (kbd "M-q") (kbd "â"))
+(global-set-key (kbd "M-S") (kbd "Ș"))
+(global-set-key (kbd "M-T") (kbd "Ț"))
+(global-set-key (kbd "M-I") (kbd "Î"))
+(global-set-key (kbd "M-A") (kbd "Ă"))
+(global-set-key (kbd "M-Q") (kbd "Â"))
 
 ;; turn on pending delete (when a region is selected, typing replaces it)
 (delete-selection-mode t)

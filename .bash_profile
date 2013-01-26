@@ -2,13 +2,22 @@
 # Splitting into .bashrc, .profile, .bash_aliases and so on is confusing and useless for me.
 
 # Some aliases
-alias ll="ls -l -h -a -G"
+
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
 alias grep="grep --color=auto"
+alias ll="ls -l -h -a -G"
+alias pg="ps ax | grep"
+
 alias e="emacsclient"
 
 alias gst="git status"
 alias gco="git commit -a -m"
 alias gpu="git push"
+
+
+
 alias b="bundle exec"
 
 # Variables
