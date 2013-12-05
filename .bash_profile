@@ -16,7 +16,7 @@ alias gst="git status"
 alias gco="git commit -a -m"
 alias gpu="git push"
 
-
+alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias b="bundle exec"
 

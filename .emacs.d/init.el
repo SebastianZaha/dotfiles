@@ -1,7 +1,7 @@
 ;; Manage packages. Install the following if they do not exist. Handy on fresh installs.
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -41,6 +41,7 @@
 (global-set-key (kbd "M-I") (kbd "Î"))
 (global-set-key (kbd "M-A") (kbd "Ă"))
 (global-set-key (kbd "M-Q") (kbd "Â"))
+
 
 ;; turn on pending delete (when a region is selected, typing replaces it)
 (delete-selection-mode t)
@@ -82,6 +83,30 @@
         (insert ? )
       (forward-char))
     (setq number (1- number))))
+
+
+;; PHP
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-hook 'php-mode-hook
+          (lambda ()
+            (c-set-style "bsd")
+            (setq c-indent-level 4)
+            (setq c-continued-statement-offset 4)
+            (setq c-brace-offset -4)
+            (setq c-argdecl-indent 0)
+            (setq c-label-offset -4)
+            (setq c-basic-offset 4)
+            (setq tab-width 4)
+            (setq indent-tabs-mode nil)
+            (c-set-offset 'case-label '+)
+            (c-set-offset 'arglist-close 'c-lineup-arglist-operators)
+            (c-set-offset 'arglist-intro '+)
+            (c-set-offset 'arglist-close '0)
+            (c-set-offset 'arglist-cont-nonempty 'c-lineup-math)))
+
+
+;; Javascript
+(setq js-indent-level 4)
 
 
 ;; TODO

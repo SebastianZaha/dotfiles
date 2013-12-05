@@ -3,7 +3,10 @@
 	email = sebastian.zaha@gmail.com
 [core]
 	editor = emacsclient
+	autocrlf = input
 [color]
 	diff = auto
 	status = auto
 	branch = auto
+[credential]
+	helper = osxkeychain
