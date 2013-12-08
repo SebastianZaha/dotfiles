@@ -10,6 +10,9 @@ alias grep="grep --color=auto"
 alias ll="ls -l -h -a -G"
 alias pg="ps ax | grep"
 
+alias g="tar -xzf"
+alias z="zip -r"
+
 alias e="emacsclient"
 
 alias gst="git status"
