@@ -4,7 +4,7 @@
     d = diff --patch-with-stat
     p = !"git pull; git submodule foreach git pull origin master"
     cl = clone --recursive
-    c = commit -a -m 
+    c = commit -a -m
     go = checkout -B
     tags = tag -l
     remotes = remote -v

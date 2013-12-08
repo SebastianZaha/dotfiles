@@ -7,18 +7,23 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-bindings zenburn-theme)
+(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-bindings zenburn-theme )
   "A list of packages to ensure are installed at launch.")
+
+;; Maybe to add: projectile flx-ido
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
+
 ;; Paths
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
+
 ;; For macports
 (setq exec-path (append exec-path '("/opt/local/bin/")))
+(setq exec-path (append exec-path '("/usr/local/bin/")))
 
 ;; Remove all bells
 (setq ring-bell-function 'ignore)
@@ -42,19 +47,41 @@
 (global-set-key (kbd "M-A") (kbd "Ă"))
 (global-set-key (kbd "M-Q") (kbd "Â"))
 
-
-;; turn on pending delete (when a region is selected, typing replaces it)
+;; Turn on pending delete (when a region is selected, typing replaces it)
 (delete-selection-mode t)
 
 ;; Color
 (load-theme 'zenburn)
 
 ;; Server
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;; Don't auto wrap
 (setq-default fill-column 160)
 (setq auto-fill-mode 0)
+
+;; Project management
+(projectile-global-mode)
+
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
+
+
+;; Custom bindings
+
+(defun volatile-kill-buffer ()
+   "Kill current buffer unconditionally."
+   (interactive)
+   (let ((buffer-modified-p nil))
+     (kill-buffer-and-window )))
+;; Unconditionally kill unmodified buffers.
+(global-set-key (kbd "C-x k") 'volatile-kill-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Programming
@@ -112,7 +139,6 @@
 ;; TODO
 ;; Navigation
 (global-set-key (kbd "s-t") 'ffip)
-(global-set-key (kbd "C-c a") 'ack)
 
 ;; grep (ack) in project
 
@@ -126,7 +152,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("b7553781f4a831d5af6545f7a5967eb002c8daeee688c5cbf33bf27936ec18b3" "5727ad01be0a0d371f6e26c72f2ef2bafdc483063de26c88eaceea0674deb3d9" default))))
+ '(custom-safe-themes (quote ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "b7553781f4a831d5af6545f7a5967eb002c8daeee688c5cbf33bf27936ec18b3" "5727ad01be0a0d371f6e26c72f2ef2bafdc483063de26c88eaceea0674deb3d9" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

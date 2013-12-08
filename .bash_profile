@@ -24,7 +24,7 @@ alias qlf='qlmanage -p "$@" >& /dev/null'
 alias b="bundle exec"
 
 # Variables
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$HOME/.rvm/bin:$PATH
+export PATH=/Applications/Emacs.app/Contents/MacOS/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$HOME/.rvm/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 export EDITOR="emacsclient"
 
