@@ -50,6 +50,16 @@
 ;; Turn on pending delete (when a region is selected, typing replaces it)
 (delete-selection-mode t)
 
+;; Scrolling
+;; one line at a time
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; don't accelerate scrolling
+(setq mouse-wheel-progressive-speed nil)
+;; scroll window under mouse
+(setq mouse-wheel-follow-mouse 't)
+;; keyboard scroll one line at a time
+(setq scroll-step 1)
+
 ;; Color
 (load-theme 'zenburn)
 
@@ -82,6 +92,7 @@
      (kill-buffer-and-window )))
 ;; Unconditionally kill unmodified buffers.
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Programming
@@ -134,6 +145,25 @@
 
 ;; Javascript
 (setq js-indent-level 4)
+
+
+;; Scheme config
+;; Enable Quack mode
+;; The binary of your interpreter
+(setq scheme-program-name "mit-scheme")
+;; This hook lets you use your theme colours instead of quack's ones.
+(defun scheme-mode-quack-hook ()
+  (require 'quack)
+  (setq quack-fontify-style 'emacs))
+(add-hook 'scheme-mode-hook 'scheme-mode-quack-hook)
+
+;; Rainbow delimiters
+(require 'rainbow-delimiters)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
 
 
 ;; TODO
