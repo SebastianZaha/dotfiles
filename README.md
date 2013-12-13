@@ -1,5 +1,4 @@
-To install
-__________
+## To install
 
 ```
 cd ~
