@@ -21,7 +21,7 @@
 	name = Sebastian Zaha
 	email = sebastian.zaha@gmail.com
 [core]
-	editor = mine
+	editor = emacsclient
 	autocrlf = input
 [color]
 	diff = auto
