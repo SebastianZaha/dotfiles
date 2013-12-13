@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE keyboard PUBLIC "" "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 2.2.6 on 2013-11-18 at 13:23 (GMT+1)-->
-<!--Last edited by Ukelele version 2.2.6 on 2013-12-13 at 12:44 (GMT+1)-->
+<!--Last edited by Ukelele version 2.2.6 on 2013-12-13 at 14:23 (GMT+1)-->
 <keyboard group="0" id="1492" name="Romanian Programmers" maxout="1">
     <layouts>
         <layout first="0" last="0" modifiers="30" mapSet="138"/>
@@ -406,16 +406,16 @@
             <key code="16" output="¥"/>
             <key code="17" action="68"/>
             <key code="18" output="¡"/>
-            <key code="19" output="™"/>
+            <key code="19" output=""/>
             <key code="20" output="£"/>
             <key code="21" output="¢"/>
-            <key code="22" action="2"/>
+            <key code="22" output=""/>
             <key code="23" output=""/>
             <key code="24" output="≠"/>
             <key code="25" output="ª"/>
-            <key code="26" output="¶"/>
+            <key code="26" output=""/>
             <key code="27" output="–"/>
-            <key code="28" output="•"/>
+            <key code="28" output=""/>
             <key code="29" output="º"/>
             <key code="30" output="”"/>
             <key code="31" action="9"/>
