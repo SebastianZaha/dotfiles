@@ -165,6 +165,13 @@
 (smartparens-global-mode t)
 
 
+;; Ruby
+(defun inf-ruby-set-pry-hook ()
+  (setq inf-ruby-default-implementation "pry"))
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+(add-hook 'inf-ruby-mode-hook 'inf-ruby-set-pry-hook)
+
 
 ;; TODO
 ;; Navigation
