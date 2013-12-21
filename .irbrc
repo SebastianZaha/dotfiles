@@ -28,3 +28,8 @@ def resize_all(size_constraint)
     end
   end
 end
+
+# Shortcuts
+def repl
+  binding.repl.irb
+end
