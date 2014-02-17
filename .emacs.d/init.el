@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-bindings zenburn-theme )
+(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-bindings zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 ;; Maybe to add: projectile flx-ido
@@ -106,6 +106,9 @@
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 (global-set-key (kbd "C-c q") 'join-line)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+
+;; Text
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 ;; Coding tools
 (global-set-key (kbd "M-/") 'hippie-expand)

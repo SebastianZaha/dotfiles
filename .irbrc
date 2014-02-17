@@ -3,6 +3,7 @@ require 'irbtools'
 # This require does not work for some reason
 # require 'irbtools/more'
 
+require 'binding.repl'
 
 # ls
 #   img1.jpg img2.jpg
