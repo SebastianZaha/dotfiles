@@ -7,9 +7,10 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-bindings zenburn-theme)
+(defvar my-packages '(starter-kit 
+                      starter-kit-ruby starter-kit-js starter-kit-bindings 
+                      zenburn-theme)
   "A list of packages to ensure are installed at launch.")
-
 ;; Maybe to add: projectile flx-ido
 
 (dolist (p my-packages)
@@ -21,13 +22,20 @@
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
 
-;; For macports
+;; Executables
 (setq exec-path (append exec-path '("/opt/local/bin/")))
 (setq exec-path (append exec-path '("/usr/local/bin/")))
 
 ;; Remove all bells
 (setq ring-bell-function 'ignore)
 (setq initial-scratch-message nil)
+
+;; Backups and auto-saves should be stored in /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 
 ;; File encoding
 (setq locale-coding-system 'utf-8)
@@ -61,16 +69,25 @@
 (setq scroll-step 1)
 
 ;; Color
-(load-theme 'zenburn)
+(load-theme 'zenburn t)
 
 ;; Server
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
+(setq ns-pop-up-frames nil)
+
+
 ;; Don't auto wrap
-(setq-default fill-column 160)
-(setq auto-fill-mode 0)
+(setq-default fill-column 100)
+(setq auto-fill-mode 1)
+
+;; Window size
+(if (window-system)
+    (progn
+      (set-frame-height (selected-frame) 56)
+      (set-frame-width (selected-frame) 100)))
 
 ;; Project management
 (projectile-global-mode)
@@ -185,17 +202,3 @@
 ;; jump to definition
 
 ;; svn / git integration - browse history, review changes before commit
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "b7553781f4a831d5af6545f7a5967eb002c8daeee688c5cbf33bf27936ec18b3" "5727ad01be0a0d371f6e26c72f2ef2bafdc483063de26c88eaceea0674deb3d9" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
