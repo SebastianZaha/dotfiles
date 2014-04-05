@@ -1,9 +1,50 @@
+[alias]
+    l = log --pretty=oneline -n 20 --graph
+    s = status -s
+    d = diff --patch-with-stat
+    p = !"git pull; git submodule foreach git pull origin master"
+    cl = clone --recursive
+    c = commit -a -m
+    go = checkout -B
+    tags = tag -l
+    remotes = remote -v
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+    undopush = push -f origin HEAD^:master
+    pom = push origin master
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 [user]
 	name = Sebastian Zaha
 	email = sebastian.zaha@gmail.com
 [core]
 	editor = emacsclient
+	autocrlf = input
 [color]
 	diff = auto
 	status = auto
 	branch = auto
+[credential]
+	helper = osxkeychain
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+# URL shorthands
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+    insteadOf = "github:"
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"
+[push]
+	default = simple
