@@ -1,9 +1,11 @@
-escape            ^uu                                                                                                                                               
-activity          "activity in %n (%t) [%w:%s]~ ^G"                                                                                                                 
-bell              "bell in %n (%t) [%w:%s]~ ^G"                                                                                                                     
-vbell             off                                                                                                                                               
-vbell_msg         " *beep* "                                                                                                                                        
-startup_message   off                                                                                                                                               
-defscrollback     5000                                                                                                                                              
-autodetach        on                                                                                                                                                
-hardstatus         string "%{ck}%-w %{Gk}%n: %t %{ck}%+w %= %H %C "                                                                                                 
+escape            ^uu
+activity          "activity in %n (%t) [%w:%s]~ ^G"
+bell              "bell in %n (%t) [%w:%s]~ ^G"
+vbell             off
+vbell_msg         " *beep* "
+startup_message   off
+defscrollback     5000
+autodetach        on
+hardstatus         string "%{ck}%-w %{Gk}%n: %t %{ck}%+w %= %H %C "
+termcapinfo xterm* ti@:te@
+
