@@ -2,6 +2,7 @@
 (require 'package)
 
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -11,7 +12,6 @@
                       starter-kit-ruby starter-kit-js starter-kit-bindings 
                       zenburn-theme)
   "A list of packages to ensure are installed at launch.")
-;; Maybe to add: projectile flx-ido
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -91,6 +91,10 @@
 
 ;; Project management
 (projectile-global-mode)
+(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+(define-key projectile-mode-map [?\s-g] 'projectile-grep)
 
 (require 'flx-ido)
 (ido-mode 1)
@@ -98,7 +102,6 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
-
 
 ;; Custom bindings
 
@@ -109,6 +112,13 @@
      (kill-buffer-and-window )))
 ;; Unconditionally kill unmodified buffers.
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
+
+;; Documentation, dash support
+(global-set-key "\C-cd" 'dash-at-point)
+(global-set-key "\C-ce" 'dash-at-point-with-docset)
+;; (add-to-list 'dash-at-point-mode-alist '(perl-mode . "perl"))
+;; (add-hook 'rinari-minor-mode-hook
+;;          (lambda () (setq dash-at-point-docset "rails")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

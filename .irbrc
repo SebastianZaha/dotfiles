@@ -3,7 +3,7 @@ require 'irbtools'
 # This require does not work for some reason
 # require 'irbtools/more'
 
-require 'binding.repl'
+# require 'binding.repl'
 
 # ls
 #   img1.jpg img2.jpg
@@ -31,6 +31,6 @@ def resize_all(size_constraint)
 end
 
 # Shortcuts
-def repl
-  binding.repl.irb
-end
+# def repl
+#  binding.repl.irb
+# end
