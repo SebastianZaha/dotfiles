@@ -10,7 +10,10 @@
 
 (defvar my-packages '(starter-kit 
                       starter-kit-ruby starter-kit-js starter-kit-bindings 
-                      zenburn-theme)
+                      zenburn-theme 
+                      flx-ido rainbow-delimiters smartparens 
+                      markdown-mode
+                      )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -86,15 +89,15 @@
 ;; Window size
 (if (window-system)
     (progn
-      (set-frame-height (selected-frame) 56)
+      (set-frame-height (selected-frame) 51)
       (set-frame-width (selected-frame) 100)))
 
 ;; Project management
-(projectile-global-mode)
-(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
-(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
-(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
-(define-key projectile-mode-map [?\s-g] 'projectile-grep)
+;; (projectile-global-mode)
+;; (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+;; (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+;; (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+;; (define-key projectile-mode-map [?\s-g] 'projectile-grep)
 
 (require 'flx-ido)
 (ido-mode 1)
