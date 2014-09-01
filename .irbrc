@@ -1,5 +1,5 @@
 # https://github.com/janlelis/irbtools
-require 'irbtools'
+# require 'irbtools'
 # This require does not work for some reason
 # require 'irbtools/more'
 

@@ -49,7 +49,7 @@
 ;; Romanian special characters. Although defined by the OSX keymap, they're ignored in emacs.
 (global-set-key (kbd "M-s") (kbd "ș"))
 (global-set-key (kbd "M-t") (kbd "ț"))
-(global-set-key (kbd "M-i") (kbd "i"))
+(global-set-key (kbd "M-i") (kbd "î"))
 (global-set-key (kbd "M-a") (kbd "ă"))
 (global-set-key (kbd "M-q") (kbd "â"))
 (global-set-key (kbd "M-S") (kbd "Ș"))
