@@ -139,6 +139,7 @@
 
 ;; Text
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md.txt$" . markdown-mode))
 
 ;; Coding tools
 (global-set-key (kbd "M-/") 'hippie-expand)
