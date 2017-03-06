@@ -57,6 +57,11 @@
 (global-set-key (kbd "M-I") (kbd "Î"))
 (global-set-key (kbd "M-A") (kbd "Ă"))
 (global-set-key (kbd "M-Q") (kbd "Â"))
+;; German
+(global-set-key (kbd "M-§") (kbd "ä"))
+(global-set-key (kbd "M-u") (kbd "ü"))
+(global-set-key (kbd "M-o") (kbd "ö"))
+
 
 ;; Turn on pending delete (when a region is selected, typing replaces it)
 (delete-selection-mode t)
@@ -144,6 +149,11 @@
 ;; Coding tools
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
 ;; Jump to a column on current line. Useful when debugging some of those obnoxious js stack traces
 (defun goto-column-number (number)
   "Untabify, and go to a column number within the current line (1 is beginning of the line)."
@@ -206,6 +216,8 @@
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (add-hook 'inf-ruby-mode-hook 'inf-ruby-set-pry-hook)
 
+
+;; Go
 
 ;; TODO
 ;; Navigation

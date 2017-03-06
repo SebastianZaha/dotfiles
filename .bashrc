@@ -32,10 +32,12 @@ alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias b="bundle exec"
 
+
 # Variables
-export PATH=~/Applications/Emacs.app/Contents/MacOS/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$PATH
+export GOPATH=$HOME/devel/_gopath
+export PATH=~/Applications/Emacs.app/Contents/MacOS/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
-export EDITOR="mine"
+export EDITOR="emacs"
 
 export LC_CTYPE="en_US.UTF-8"
 export LC_ALL=""
@@ -43,8 +45,12 @@ export LC_ALL=""
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
-shopt -s histappend                      # append to history, don't overwrite it
 
+HOSTNAME="$(hostname)"
+HOSTNAME_SHORT="${HOSTNAME%%.*}"
+HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
+
+shopt -s histappend                      # append to history, don't overwrite it
 
 function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
 function CLOSE_COLOR () { echo -ne '\e[m'; }

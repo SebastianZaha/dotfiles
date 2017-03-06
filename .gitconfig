@@ -12,6 +12,15 @@
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
     undopush = push -f origin HEAD^:master
     pom = push origin master
+
+    change = codereview change
+    gofmt = codereview gofmt
+    mail = codereview mail
+    pending = codereview pending
+    rebase-work = codereview rebase-work
+    submit = codereview submit
+    sync = codereview sync
+
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
@@ -22,7 +31,7 @@
 	name = Sebastian Zaha
 	email = sebastian.zaha@gmail.com
 [core]
-	editor = emacsclient
+	editor = emacs
 	autocrlf = input
 [color]
 	diff = auto
