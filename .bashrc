@@ -32,6 +32,8 @@ alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias b="bundle exec"
 
+alias netstatosx="sudo lsof -i -n -P | grep TCP"
+
 
 export GOPATH=$HOME/devel/_gopath
 export PATH=/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$PATH
