@@ -33,11 +33,11 @@ alias qlf='qlmanage -p "$@" >& /dev/null'
 alias b="bundle exec"
 
 
-# Variables
 export GOPATH=$HOME/devel/_gopath
-export PATH=~/Applications/Emacs.app/Contents/MacOS/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$PATH
+export PATH=/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 export EDITOR="emacs"
+export PAGER="less"
 
 export LC_CTYPE="en_US.UTF-8"
 export LC_ALL=""
