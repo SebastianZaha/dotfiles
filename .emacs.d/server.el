@@ -63,3 +63,4 @@
 (global-set-key (kbd "C-c q") 'join-line)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 
+;; Do not auto-indent on RET, it messes up pasting into terminal                                                                                                                  (electric-indent-mode 0)
