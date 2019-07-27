@@ -236,12 +236,20 @@
 
 ;; jump to definition
 
+(require 'org)
+(setq org-directory "~/Dropbox/txt/org")
+(setq org-mobile-directory "~/.emacs.d/org_mobile")
+(setq org-mobile-inbox-for-pull "~/.emacs.d/org_mobile_inbox_for_pull")
+
 ;; svn / git integration - browse history, review changes before commit
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+	("~/Dropbox/txt/org" "~/devel/org/src/test/resources/com/bifolia/orgmode/lang/lexer/fixtures/Main.org")))
  '(package-selected-packages
    (quote
 	(zenburn-theme toml-mode starter-kit-ruby starter-kit-js starter-kit-bindings smartparens rust-mode rainbow-delimiters quack php-mode markdown-mode lua-mode go-mode go-autocomplete flycheck flx-ido company arduino-mode))))
