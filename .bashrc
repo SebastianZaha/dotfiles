@@ -13,15 +13,9 @@ alias cutw="cut -d ' ' -f"
 alias pg="ps ax | grep"
 alias grep="grep --color=auto"
 
-alias g="tar -czf"
-alias ug="tar -xzf"
-alias z="zip -r"
-alias uz="unzip"
-
 alias less="less -r"
-alias e="emacsclient --no-wait"
+alias e="emacs -nw"
 alias m="mine"
-alias mcb="mc -b"
 
 alias gst="git status"
 alias gco="git commit -a -m"
@@ -38,7 +32,7 @@ alias netstatosx="sudo lsof -i -n -P | grep TCP"
 export GOPATH=$HOME/devel/_gopath
 export PATH=/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
-export EDITOR="emacs"
+export EDITOR="e"
 export PAGER="less"
 
 export LC_CTYPE="en_US.UTF-8"
