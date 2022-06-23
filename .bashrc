@@ -15,7 +15,6 @@ alias grep="grep --color=auto"
 
 alias less="less -r"
 alias e="emacs -nw"
-alias m="mine"
 
 alias gst="git status"
 alias gco="git commit -a -m"
@@ -32,7 +31,7 @@ alias netstatosx="sudo lsof -i -n -P | grep TCP"
 export GOPATH=$HOME/devel/_gopath
 export PATH=/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$HOME/.rvm/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
-export EDITOR="e"
+export EDITOR="vim"
 export PAGER="less"
 
 export LC_CTYPE="en_US.UTF-8"
