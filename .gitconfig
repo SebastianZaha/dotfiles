@@ -13,14 +13,6 @@
     undopush = push -f origin HEAD^:master
     pom = push origin master
 
-    change = codereview change
-    gofmt = codereview gofmt
-    mail = codereview mail
-    pending = codereview pending
-    rebase-work = codereview rebase-work
-    submit = codereview submit
-    sync = codereview sync
-
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
@@ -28,17 +20,17 @@
     # Include summaries of merged commits in newly created merge commit messages
     log = true
 [user]
-	name = Sebastian Zaha
-	email = sebastian.zaha@gmail.com
+    name = Sebastian Zaha
+    email = sebastian.zaha@gmail.com
 [core]
-	editor = emacs
-	autocrlf = input
+    editor = vim
+    autocrlf = input
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
     remote = origin
@@ -56,5 +48,7 @@
     pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
+[url "git@bitbucket.org:"]
+    insteadOf = https://bitbucket.org
 [push]
-	default = simple
+    default = simple
