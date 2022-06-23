@@ -1,3 +1,0 @@
-#!/bin/sh
-# http://ngauthier.com/2012/02/quick-tests-with-bash.html
-bundle exec ruby -Ilib:test `bundle list rake`/lib/rake/rake_test_loader.rb test/unit/**/*.rb test/functional/**/*.rb test/integration/**/*.rb

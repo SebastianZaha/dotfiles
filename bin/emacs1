@@ -1,6 +1,0 @@
-#!/bin/sh
-osascript -e 'tell app "Emacs" to activate'; 
-  /Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait $@
-
-# This version does not stop when invoked from console, and does not focus app:
-#   /Applications/Emacs.app/Contents/MacOS/Emacs "$@"
