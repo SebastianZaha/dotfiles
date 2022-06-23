@@ -41,6 +41,9 @@ export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 
+# disable Ctrl-s to 'lock' the tty
+stty -ixon
+
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
 HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
@@ -55,3 +58,5 @@ unset PROMPT_COMMAND
 
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
