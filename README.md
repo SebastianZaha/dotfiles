@@ -3,6 +3,6 @@
 ```
 cd ~
 git init
-git remote add origin https://github.com/SebastianZaha/dotfiles.git
+git remote add origin git@github.com:SebastianZaha/dotfiles.git
 git pull origin master
 ```
