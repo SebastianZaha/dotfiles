@@ -99,7 +99,7 @@ menubar_visible=false
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=48
+left_panel_size=101
 horizontal_equal=true
 top_panel_size=1
 
@@ -122,6 +122,8 @@ xterm-256color=
 color_terminals=
 
 screen=
+
+tmux-256color=
 
 [Panels]
 show_mini_info=true
