@@ -48,7 +48,7 @@ HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
 HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 
-shopt -s histappend                      # append to history, don't overwrite it
+shopt -s histappend # append to history, don't overwrite it
 
 function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
 function CLOSE_COLOR () { echo -ne '\e[m'; }
@@ -60,3 +60,6 @@ unset PROMPT_COMMAND
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export RIPGREP_CONFIG_PATH=~/.ripgrep
+

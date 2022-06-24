@@ -1,4 +1,10 @@
 *
+!.bash_profile
+!.bashrc
+!.gemrc
+!.gitconfig
+!.tmux.conf
+!.vimrc
 !.emacs.d/
 !bin/
 

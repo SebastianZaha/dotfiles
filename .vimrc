@@ -21,8 +21,12 @@ set nobackup
 set nowb
 set noswapfile
 
+set timeout
+set ttimeout
+set timeoutlen=1000
+set ttimeoutlen=1
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -40,7 +44,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -52,13 +55,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <leader>bc :Bclose<cr>:tabclose<cr>gT
+map <C-w>b :Bclose<cr>:tabclose<cr>gT
 
-" Close all the buffers
-map <leader>ba :bufdo bd<cr>
-
-map <leader>bl :bnext<cr>
-map <leader>bh :bprevious<cr>
+" nnoremap <leader>b :ls<CR>:b<Space>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -78,6 +77,18 @@ au TabLeave * let g:lasttab = tabpagenr()
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+" Switch between tabs
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -99,9 +110,18 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the status line
 set laststatus=2
 
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+function! s:statusline_expr()
+  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+  let ro  = "%{&readonly ? '[RO] ' : ''}"
+  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
+  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
+  let sep = ' %= '
+  let pos = ' %-12(%l : %c%V%) '
+  let pct = ' %P'
 
+  return ' %{HasPaste()} [%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+endfunction
+let &statusline = s:statusline_expr()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -179,13 +199,31 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+  nmap     <Leader>g :Git<CR>gg<c-n>
+  nnoremap <Leader>d :Gdiff<CR>
+
+" Colors
+Plug 'tomasr/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'morhetz/gruvbox'
+  let g:gruvbox_contrast_dark = 'soft'
+Plug 'yuttie/hydrangea-vim'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'AlessandroYorba/Despacio'
+Plug 'cocopon/iceberg.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'nightsense/snow'
+Plug 'nightsense/stellarized'
+Plug 'arcticicestudio/nord-vim'
+Plug 'nightsense/cosmic_latte'
 
 call plug#end()
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Save
-inoremap <C-s>     <C-O>:update<cr>
+inoremap <C-s>     <C-O>:update<cr><esc>
 nnoremap <C-s>     :update<cr>
 
 " Quit
@@ -199,4 +237,66 @@ inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-^> <C-o><C-^>
+
+
+" ============================================================================
+" FZF {{{
+" ============================================================================
+
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+
+nnoremap <silent> <leader><space> :AllFiles<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>w :Windows<CR>
+nnoremap <silent> <leader>C :Colors<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+" command history
+nnoremap <silent> <leader>: :History:<CR> 
+nnoremap <silent> <leader>/ :execute 'RG! ' . input('Rg/')<CR>
+nnoremap <silent> <Leader>rg :RG! <C-R><C-W><CR>
+nnoremap <silent> <Leader>RG :RG! <C-R><C-A><CR>
+xnoremap <silent> <Leader>rg y:RG! <C-R>"<CR>
+
+" All files
+command! -nargs=? -complete=dir AllFiles
+  \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+  \   'source': 'rg --files --hidden -g "!.git" '.expand(<q-args>)
+  \ })))
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --hidden --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" }}}
+" ============================================================================
 

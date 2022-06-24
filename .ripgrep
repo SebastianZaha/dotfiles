@@ -1,0 +1,5 @@
+
+--type-add
+html:*.{ejs,htm,html,haml,erb}*
+
+--smart-case
