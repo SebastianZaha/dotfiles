@@ -48,6 +48,11 @@ set wrap "Wrap lines
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Tags
+nnoremap <C-]> g<C-]>
+nnoremap <C-[> :pop<cr>
+
+
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -170,8 +175,7 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 set omnifunc=syntaxcomplete#Complete
-colorscheme desert
-
+ 
 if &history < 1000
   set history=1000
 endif
@@ -203,6 +207,9 @@ Plug 'tpope/vim-fugitive'
   nmap     <Leader>g :Git<CR>gg<c-n>
   nnoremap <Leader>d :Gdiff<CR>
 
+" clears search highlighting after you finish incremental search  
+Plug 'romainl/vim-cool'
+
 " Colors
 Plug 'tomasr/molokai'
 Plug 'chriskempson/vim-tomorrow-theme'
@@ -217,6 +224,7 @@ Plug 'nightsense/snow'
 Plug 'nightsense/stellarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nightsense/cosmic_latte'
+  colorscheme iceberg
 
 call plug#end()
 
@@ -299,4 +307,24 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " }}}
 " ============================================================================
+
+
+if has('nvim')
+    let g:terminal_color_0  = '#2e3436'
+    let g:terminal_color_1  = '#cc0000'
+    let g:terminal_color_2  = '#4e9a06'
+    let g:terminal_color_3  = '#c4a000'
+    let g:terminal_color_4  = '#3465a4'
+    let g:terminal_color_5  = '#75507b'
+    let g:terminal_color_6  = '#0b939b'
+    let g:terminal_color_7  = '#d3d7cf'
+    let g:terminal_color_8  = '#555753'
+    let g:terminal_color_9  = '#ef2929'
+    let g:terminal_color_10 = '#8ae234'
+    let g:terminal_color_11 = '#fce94f'
+    let g:terminal_color_12 = '#729fcf'
+    let g:terminal_color_13 = '#ad7fa8'
+    let g:terminal_color_14 = '#00f5e9'
+    let g:terminal_color_15 = '#eeeeec'
+endif
 
