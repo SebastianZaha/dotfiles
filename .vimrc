@@ -224,9 +224,12 @@ Plug 'nightsense/snow'
 Plug 'nightsense/stellarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nightsense/cosmic_latte'
-  colorscheme iceberg
 
 call plug#end()
+
+
+colorscheme iceberg
+
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 

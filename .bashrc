@@ -15,8 +15,8 @@ alias grep="grep --color=auto"
 
 alias less="less -r"
 alias e="emacs -nw"
-alias vi = "nvim"
-alias vim = "nvim"
+alias vi="nvim"
+alias vim="nvim"
 
 alias gst="git status"
 alias gco="git commit -a -m"
