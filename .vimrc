@@ -28,6 +28,9 @@ set ttimeoutlen=1
 
 set number relativenumber
 
+set diffopt+=vertical
+set diffopt+=hiddenoff
+
 let mapleader = "\<Space>"
 
 
@@ -49,6 +52,11 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 " Tags
 nnoremap <C-]> g<C-]>
@@ -282,7 +290,7 @@ nnoremap <silent> <leader><space> :AllFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>w :Windows<CR>
 nnoremap <silent> <leader>C :Colors<CR>
-nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>: :BLines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
