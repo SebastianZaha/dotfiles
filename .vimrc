@@ -26,6 +26,8 @@ set ttimeout
 set timeoutlen=1000
 set ttimeoutlen=1
 
+set number relativenumber
+
 let mapleader = "\<Space>"
 
 
