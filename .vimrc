@@ -203,7 +203,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive', {'commit': '8b39d29'}
+Plug 'tpope/vim-fugitive'
   nmap     <Leader>g :Git<CR>gg<c-n>
   nnoremap <Leader>d :Gdiff<CR>
 
