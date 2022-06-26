@@ -48,7 +48,11 @@ set tabstop=4
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
+set linebreak
+set showbreak=>>
+set breakindent
+set breakindentopt=sbr
+ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -75,23 +79,23 @@ map <C-w>b :Bclose<cr>:tabclose<cr>gT
 " nnoremap <leader>b :ls<CR>:b<Space>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>tl :tabn<cr>
-map <leader>th :tabp<cr>
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove
+noremap <leader>tl :tabn<cr>
+noremap <leader>th :tabp<cr>
 
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+noremap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+noremap <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Switch between tabs
 nmap <leader>1 1gt
@@ -106,7 +110,7 @@ nmap <leader>9 9gt
 
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -214,7 +218,7 @@ Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-  nmap     <Leader>g :Git<CR>gg<c-n>
+  nnoremap <Leader>g :Git<CR>gg<c-n>
   nnoremap <Leader>d :Gdiff<CR>
 
 " clears search highlighting after you finish incremental search  
@@ -248,9 +252,7 @@ inoremap <C-s>     <C-O>:update<cr><esc>
 nnoremap <C-s>     :update<cr>
 
 " Quit
-inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :q<cr>
-vnoremap <C-Q>     <esc>
+nnoremap q     <esc>:q<cr>
 
 " Movement in insert mode
 inoremap <C-h> <C-o>h
@@ -295,7 +297,7 @@ nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 " command history
-nnoremap <silent> <leader>: :History:<CR> 
+nnoremap <silent> <leader>; :History:<CR> 
 nnoremap <silent> <leader>/ :execute 'RG! ' . input('Rg/')<CR>
 nnoremap <silent> <Leader>rg :RG! <C-R><C-W><CR>
 nnoremap <silent> <Leader>RG :RG! <C-R><C-A><CR>
