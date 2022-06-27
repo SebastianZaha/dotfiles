@@ -268,7 +268,9 @@ inoremap <C-^> <C-o><C-^>
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7 } }
+let g:fzf_preview_window = ['down:75%:wrap', 'ctrl-/']
+let g:fzf_tags_command = 'ctags -R'
 
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
@@ -286,7 +288,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
 
 nnoremap <silent> <leader><space> :AllFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
