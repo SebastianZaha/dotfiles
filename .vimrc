@@ -74,7 +74,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <C-w>b :Bclose<cr>:tabclose<cr>gT
+noremap <C-w>b :Bclose<cr>:tabclose<cr>gT
 
 " nnoremap <leader>b :ls<CR>:b<Space>
 

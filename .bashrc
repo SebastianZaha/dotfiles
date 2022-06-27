@@ -31,7 +31,7 @@ alias netstatosx="sudo lsof -i -n -P | grep TCP"
 
 
 export GOPATH=$HOME/devel/_gopath
-export PATH=/usr/local/mysql/bin:$HOME/bin:$GOPATH/bin:$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/mysql/bin:/usr/local/go/bin:$HOME/bin:$GOPATH/bin:$HOME/.rvm/bin:$PATH
 # export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 export EDITOR="vim"
 export PAGER="less"
