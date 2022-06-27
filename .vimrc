@@ -252,6 +252,7 @@ inoremap <C-s>     <C-O>:update<cr><esc>
 nnoremap <C-s>     :update<cr>
 
 " Quit
+nnoremap Q q
 nnoremap q     <esc>:q<cr>
 
 " Movement in insert mode
