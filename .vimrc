@@ -108,16 +108,8 @@ nmap <leader>7 7gt
 nmap <leader>8 8gt
 nmap <leader>9 9gt
 
-
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
