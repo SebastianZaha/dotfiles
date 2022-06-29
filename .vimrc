@@ -31,6 +31,8 @@ set number relativenumber
 set diffopt+=vertical
 set diffopt+=hiddenoff
 
+set clipboard+=unnamedplus
+
 let mapleader = "\<Space>"
 
 
