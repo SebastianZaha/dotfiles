@@ -196,7 +196,7 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 
-if has("unix")
+if has("unix") && filereadable("/proc/version")
   let lines = readfile("/proc/version")
   if lines[0] =~ "Microsoft"
     " wsl copy
