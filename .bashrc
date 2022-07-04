@@ -31,11 +31,10 @@ alias netstatosx="sudo lsof -i -n -P | grep TCP"
 
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
-if [[ -v TERMUX_VERSION ]]; then
-else
-    export PATH=/usr/local/mysql/bin:$HOME/.rvm/bin:$PATH
+if [[ ! -v TERMUX_VERSION ]]; then
+    export PATH=/usr/local/go/bin:usr/local/mysql/bin:$HOME/.rvm/bin:$PATH
 fi
-export PATH=$HOME/.local/bin:$HOME/.local/go/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export EDITOR="vim"
 export PAGER="less"
 

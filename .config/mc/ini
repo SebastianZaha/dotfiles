@@ -89,6 +89,8 @@ editor_state_full_filename=true
 
 safe_overwrite=false
 
+shadows=true
+
 [Layout]
 message_visible=false
 keybar_visible=false
@@ -99,7 +101,7 @@ menubar_visible=false
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=101
+left_panel_size=91
 horizontal_equal=true
 top_panel_size=1
 
@@ -164,6 +166,8 @@ content_whole_words=false
 content_all_charsets=false
 ignore_dirs_enable=true
 ignore_dirs=
+
+follow_symlinks=false
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print

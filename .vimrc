@@ -204,6 +204,18 @@ if has("unix") && filereadable("/proc/version")
   endif
 endif
 
+"if executable('termux-clipboard-set')
+"    au TextYankPost * call system('termux-clipboard-set &', @")
+"    function Paste(p)
+"       let sysclip=system('termux-clipboard-get')
+"        if sysclip != @"
+"            let @"=sysclip
+"        endif
+"        return a:p
+"    endfunction
+"    noremap <expr> p Paste('p')
+"    noremap <expr> P Paste('P')
+"end
 
 call plug#begin('~/.vim/plugged')
 
@@ -302,11 +314,11 @@ xnoremap <silent> <Leader>rg y:RG! <C-R>"<CR>
 " All files
 command! -nargs=? -complete=dir AllFiles
   \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-  \   'source': 'rg --files --hidden -g "!.git" '.expand(<q-args>)
+  \   'source': 'rg --files --no-ignore-parent --hidden -g "!.git" '.expand(<q-args>)
   \ })))
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --hidden --line-number --no-heading --color=always --smart-case %s || true'
+  let command_fmt = 'rg --column --no-ignore-parent --hidden --line-number --no-heading --color=always --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
