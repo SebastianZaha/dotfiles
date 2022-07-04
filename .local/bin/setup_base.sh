@@ -33,17 +33,16 @@ fi
 source .bashrc
 
 
-function installGo() {
-    echo "========================================"
-    echo "installing golang"
-    echo "========================================"
-
-    rm -rf ~/.local/go
-    read -p "Paste current golang download uri from https://go.dev/dl/ :" go_uri
-
-    wget $go_uri --output-document=go.gz
-    tar --directory=~/.local/ -xzf go.gz
-    rm go.gz
-}
-
+#function installGo() {
+#    echo "========================================"
+#    echo "installing golang"
+#    echo "========================================"
+#
+#    rm -rf ~/.local/go
+#    read -p "Paste current golang download uri from https://go.dev/dl/ :" go_uri
+#
+#    wget $go_uri --output-document=go.gz
+#    tar --directory=~/.local/ -xzf go.gz
+#    rm go.gz
+#}
 
