@@ -78,3 +78,6 @@ unset PROMPT_COMMAND
 
 export RIPGREP_CONFIG_PATH=~/.ripgrep
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ "$(tty)" = "/dev/tty1" ] && exec sway
