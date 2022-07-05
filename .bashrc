@@ -30,6 +30,8 @@ alias b="bundle exec"
 
 alias netstatosx="sudo lsof -i -n -P | grep TCP"
 
+alias mkpkg="makepkg --syncdeps --install --clean && git clean -dfx"
+
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 if [[ ! -v TERMUX_VERSION ]]; then
