@@ -14,9 +14,18 @@ set $term foot
 # on the original workspace that the command was run on.
 set $menu bemenu-run | xargs swaymsg exec --
 
-default_border pixel 1
+default_border none
 default_floating_border pixel 1
-hide_edge_borders smart
+gaps inner 5
+gaps outer 0
+
+
+# Startup
+exec waybar
+
+# Custom commands
+
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
 
 ### Output configuration
@@ -72,7 +81,7 @@ output DP-1 resolution 2560x1440 position 0,0 scale 1.5
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
+    
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
     floating_modifier $mod normal
@@ -194,24 +203,6 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
 
 input "type:keyboard" {
     xkb_layout us

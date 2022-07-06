@@ -32,6 +32,9 @@ alias netstatosx="sudo lsof -i -n -P | grep TCP"
 
 alias mkpkg="makepkg --syncdeps --install --clean && git clean -dfx"
 
+# wayland
+alias chromium-wayland="chromium --ozone-platform-hint=auto"
+
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 if [[ ! -v TERMUX_VERSION ]]; then
@@ -60,14 +63,11 @@ HISTTIMEFORMAT='%F %T '
 # Multiple commands on one line show up as a single line
 shopt -s cmdhist
 # Append new history lines, clear the history list, re-read the history list, print prompt.
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"$
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 #########################################################################
 
 # disable Ctrl-s to 'lock' the tty
 stty -ixon
-
-HOSTNAME="$(hostname)"
-HOSTNAME_SHORT="${HOSTNAME%%.*}"
 
 function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
 function CLOSE_COLOR () { echo -ne '\e[m'; }
@@ -83,3 +83,4 @@ export RIPGREP_CONFIG_PATH=~/.ripgrep
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ "$(tty)" = "/dev/tty1" ] && exec sway
+
