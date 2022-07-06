@@ -22,6 +22,7 @@ gaps outer 0
 
 # Startup
 exec waybar
+exec tailscale-systray
 
 # Custom commands
 

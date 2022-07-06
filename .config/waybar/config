@@ -1,0 +1,41 @@
+{
+	"layer": "top",	
+	"position": "right",
+    "height": 960,
+    "width": 30,
+    "spacing": 10,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": [],
+    "modules-right": ["pulseaudio", "clock", "tray"],
+
+
+	"sway/workspaces": {
+        "disable-scroll": true,
+        "disable-markup": true,
+        "format": "{index}" 
+    },
+
+    
+    "tray": {
+        "icon-size": 18,
+        "spacing": 15
+    },
+
+
+    "clock": {
+        "format": "{:%e%b\n%R}",
+        "interval": 30
+    },
+
+    "pulseaudio": {
+        "format": "{icon}{volume}% ",
+        "format-muted":"🔇 Mute ",
+        "interval": 60,
+
+        "format-icons": {
+            "default": ["🔊"]
+        },
+        "on-click": "pavucontrol"
+    }
+}
