@@ -1,0 +1,9 @@
+
+[Default Applications]
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/bmp=imv.desktop
+image/tiff=imv.desktop
+image/svg+xml=imv.desktop
+image/gif=imv.desktop
+
