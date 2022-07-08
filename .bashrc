@@ -20,9 +20,8 @@ alias vi="nvim"
 alias vim="nvim"
 
 alias gst="git status"
-alias gco="git commit -a -m"
-alias gpu="git push"
-alias gpm="git push origin master"
+alias gcm="git commit --all --verbose"
+alias gp="git push"
 
 alias qlf='qlmanage -p "$@" >& /dev/null'
 
