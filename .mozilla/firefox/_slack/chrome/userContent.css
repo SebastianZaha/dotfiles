@@ -1,0 +1,34 @@
+@-moz-document domain(app.slack.com) {
+    .c-virtual_list__item, .c-virtual_list__sticky_container {
+        position:unset !important;
+    }
+    .p-message_pane_message__message .c-message_kit__gutter, 
+    .p-message_pane_message__message .c-message_kit__tombstone  {
+        padding: 4px 10px !important;
+    }
+    c-.c-message_list--floating .p-message_pane_message__message--last:not(.p-message_pane_message__message--showing_context_bar) {
+        margin-bottom: 5px !important;
+    }
+    .p-client_desktop--ia-top-nav .c-message_list__day_divider {
+        padding: 12px 0 !important;
+    }
+    .c-message_list__day_divider__label__pill {
+        top: -14px !important;
+    }
+    [lang] .c-message_kit__message, 
+    [lang] .p-rich_text_block,
+    .p-channel_sidebar {
+        font-size: 12px !important;
+    }
+    .p-bookmarks_bar, .p-view_header {
+        display: none !important;
+    }
+    .c-emoji--inline img {
+        height: 16px !important;
+        width: 16px !important;
+        margin-top: -8px !important;
+    }
+    body {
+        font-family: monospace !important;
+    }
+}

@@ -1,0 +1,22 @@
+@-moz-document domain(web.whatsapp.com) {
+    .two ._2i3T7 {
+        flex: 25% !important;
+    }
+    .focusable-list-item {
+        margin-bottom: 4px !important;
+    }
+    .selectable-text {
+        font-size: 12px !important;
+    }
+    /* sidebar stuff */
+    .zoWT4 {
+        font-size: 13px;
+    }
+    ._1qB8f {
+        font-size: 12px;
+    }
+    body {
+        font-family: monospace !important;
+    }
+}
+
