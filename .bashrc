@@ -66,6 +66,10 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # disable Ctrl-s to 'lock' the tty
 stty -ixon
 
+# disable history expansion, it just messes up my usage of ! in other commands, 
+# and I never use it (or know how to)
+set +H 
+
 function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
 function CLOSE_COLOR () { echo -ne '\e[m'; }
 export PS1="\[`EXT_COLOR 30`\]\h\[`CLOSE_COLOR`\]\[`EXT_COLOR 174`\] \w \$ \[`CLOSE_COLOR`\] > "
