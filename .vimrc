@@ -78,8 +78,6 @@ map <C-l> <C-W>l
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>:tabclose<cr>gT
 
-" nnoremap <leader>b :ls<CR>:b<Space>
-
 " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
 noremap <leader>to :tabonly<cr>
@@ -254,12 +252,12 @@ colorscheme iceberg
 nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Save
-inoremap <C-s>     <C-O>:update<cr><esc>
-nnoremap <C-s>     :update<cr>
+inoremap <C-s> <C-O>:update<cr><esc>
+nnoremap <C-s> :update<cr>
 
 " Quit
 nnoremap Q q
-nnoremap q     <esc>:q<cr>
+nnoremap q <esc>:q<cr>
 
 " Movement in insert mode
 inoremap <C-h> <C-o>h
@@ -268,6 +266,11 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-^> <C-o><C-^>
 
+" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
+nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " ============================================================================
 " FZF {{{

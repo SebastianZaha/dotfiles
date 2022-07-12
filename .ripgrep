@@ -3,3 +3,7 @@
 html:*.{ejs,htm,html,haml,erb}*
 
 --smart-case
+
+# since I have ~ as a git repo, the git ignore rules are messing up grepping 
+# in home subdirectories
+--no-ignore-parent
