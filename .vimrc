@@ -215,15 +215,29 @@ endif
 "    noremap <expr> P Paste('P')
 "end
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
+Plug 'neovim/nvim-lspconfig'
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
   nnoremap <Leader>g :Git<CR>gg<c-n>
   nnoremap <Leader>d :Gdiff<CR>
+
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+  " ds, cs, yss, S in V mode
+
+" programming languages
+Plug 'fatih/vim-go'
 
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
