@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Some aliases
 
@@ -15,7 +15,6 @@ alias dus="du -shx"
 alias pg="ps ax | grep"
 alias grep="grep --color=auto"
 
-alias less="less -r"
 alias e="emacs -nw"
 alias vi="nvim"
 alias vim="nvim"
@@ -23,8 +22,6 @@ alias vim="nvim"
 alias gst="git status"
 alias gcm="git commit --all --verbose"
 alias gp="git push"
-
-alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias b="bundle exec"
 
@@ -39,6 +36,9 @@ if [[ ! -v TERMUX_VERSION ]]; then
 fi
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR="vim"
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"
 export PAGER="less"
 
 export LC_CTYPE="en_US.UTF-8"

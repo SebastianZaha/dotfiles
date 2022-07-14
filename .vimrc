@@ -348,7 +348,6 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " }}}
 " ============================================================================
 
-
 if has('nvim')
     let g:terminal_color_0  = '#2e3436'
     let g:terminal_color_1  = '#cc0000'

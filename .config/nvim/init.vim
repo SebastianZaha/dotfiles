@@ -3,8 +3,6 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 lua << EOF
-require'lspconfig'.solargraph.setup{}
-
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -39,7 +37,11 @@ end
 
 require('lspconfig')['solargraph'].setup{
     on_attach = on_attach,
-    flags = lsp_flags,
+}
+
+-- npm i -g bash-language-server
+require'lspconfig'.bashls.setup{
+    on_attach = on_attach,
 }
 
 EOF
