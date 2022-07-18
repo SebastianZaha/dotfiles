@@ -78,36 +78,6 @@ map <C-l> <C-W>l
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>:tabclose<cr>gT
 
-" Useful mappings for managing tabs
-noremap <leader>tn :tabnew<cr>
-noremap <leader>to :tabonly<cr>
-noremap <leader>tc :tabclose<cr>
-noremap <leader>tm :tabmove
-noremap <leader>tl :tabn<cr>
-noremap <leader>th :tabp<cr>
-
-
-" Let 'tl' toggle between this and the last accessed tab
-let g:lasttab = 1
-noremap <Leader>tl :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-noremap <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
-
-" Switch between tabs
-nmap <leader>1 1gt
-nmap <leader>2 2gt
-nmap <leader>3 3gt
-nmap <leader>4 4gt
-nmap <leader>5 5gt
-nmap <leader>6 6gt
-nmap <leader>7 7gt
-nmap <leader>8 8gt
-nmap <leader>9 9gt
-
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 
@@ -202,19 +172,7 @@ if has("unix") && filereadable("/proc/version")
   endif
 endif
 
-"if executable('termux-clipboard-set')
-"    au TextYankPost * call system('termux-clipboard-set &', @")
-"    function Paste(p)
-"       let sysclip=system('termux-clipboard-get')
-"        if sysclip != @"
-"            let @"=sysclip
-"        endif
-"        return a:p
-"    endfunction
-"    noremap <expr> p Paste('p')
-"    noremap <expr> P Paste('P')
-"end
-
+" auto install vim-plug on first starting vim
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -225,7 +183,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
@@ -243,27 +200,11 @@ Plug 'fatih/vim-go'
 Plug 'romainl/vim-cool'
 
 " Colors
-Plug 'tomasr/molokai'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'morhetz/gruvbox'
-  let g:gruvbox_contrast_dark = 'soft'
-Plug 'yuttie/hydrangea-vim'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'AlessandroYorba/Despacio'
 Plug 'cocopon/iceberg.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'nightsense/snow'
-Plug 'nightsense/stellarized'
-Plug 'arcticicestudio/nord-vim'
-Plug 'nightsense/cosmic_latte'
-
 call plug#end()
-
 
 colorscheme iceberg
 
-
-nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
