@@ -24,16 +24,6 @@ gaps outer 0
 exec waybar
 exec tailscale-systray
 
-workspace 5
-
-exec firefox --profile ~/.mozilla/firefox/_whatsapp/ https://web.whatsapp.com
-exec firefox --profile ~/.mozilla/firefox/_irc/ https://chat.sr.ht
-exec firefox --profile ~/.mozilla/firefox/_slack/ https://findrevived.slack.com
-exec $term
-
-workspace 1
-exec $term
-
 workspace 4 
 exec firefox
 

@@ -233,8 +233,8 @@ nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7 } }
-let g:fzf_preview_window = ['down:75%:wrap', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
+let g:fzf_preview_window = ['up:50%:wrap', 'ctrl-/']
 let g:fzf_tags_command = 'ctags -R'
 
 " Customize fzf colors to match your color scheme
@@ -280,7 +280,7 @@ function! RipgrepFzf(query, fullscreen)
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  let options = fzf#vim#with_preview(options, 'up:50%:wrap', 'ctrl-/')
   call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
 endfunction
 
