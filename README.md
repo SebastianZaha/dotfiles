@@ -8,7 +8,9 @@ git pull origin master
 ```
 
 ```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+wget https://raw.githubusercontent.com/SebastianZaha/dotfiles/master/.bashrc -O ~/.bashrc
+wget https://raw.githubusercontent.com/SebastianZaha/dotfiles/master/.vimrc -O ~/.vimrc
+wget https://raw.githubusercontent.com/SebastianZaha/dotfiles/master/.screenrc -O ~/.screenrc
+source ~/.bashrc
 ```
 
