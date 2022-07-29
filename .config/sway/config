@@ -76,6 +76,7 @@ output DP-1 resolution 2560x1440 position 0,0 scale 1.5
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+t exec tea_time
 
     # Kill focused window
     bindsym $mod+Shift+q kill

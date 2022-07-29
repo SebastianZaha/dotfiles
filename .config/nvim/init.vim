@@ -35,9 +35,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-require('lspconfig')['solargraph'].setup{
-    on_attach = on_attach,
-}
+--require('lspconfig')['solargraph'].setup{
+--    on_attach = on_attach,
+--}
 
 -- npm i -g bash-language-server
 require'lspconfig'.bashls.setup{

@@ -13,6 +13,7 @@ set incsearch " Makes search act like search in modern browsers
 set noerrorbells
 set novisualbell
 set foldcolumn=1 " Add a bit extra margin to the left
+set cursorline
 
 set encoding=utf8
 
