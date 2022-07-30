@@ -47,3 +47,5 @@
     smtpuser = sebastian.zaha@gmail.com
     smtpencryption = tls
     smtpserverport = 587
+[diff]
+	algorithm = patience

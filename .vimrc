@@ -29,8 +29,7 @@ set ttimeoutlen=1
 
 set number relativenumber
 
-set diffopt+=vertical
-set diffopt+=hiddenoff
+set diffopt+=vertical,hiddenoff,algorithm:patience
 
 set clipboard+=unnamedplus
 
@@ -227,6 +226,11 @@ nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" shortcuts for 3-way merge
+map <Leader>1 :diffget LOCAL<CR>
+map <Leader>2 :diffget BASE<CR>
+map <Leader>3 :diffget REMOTE<CR>
 
 " ============================================================================
 " FZF {{{
