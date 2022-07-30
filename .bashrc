@@ -19,6 +19,8 @@ alias e="emacs -nw"
 alias vi="nvim"
 alias vim="nvim"
 
+alias v="vgrep"
+
 alias gst="git status"
 alias gcm="git commit --all --verbose"
 alias gp="git push"

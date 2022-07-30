@@ -12,13 +12,16 @@
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
     undopush = push -f origin HEAD^:master
     pom = push origin master
-
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
 [merge]
+    tool = vimdiff
+    conflictstyle = diff3
     # Include summaries of merged commits in newly created merge commit messages
     log = true
+[mergetool]
+    prompt = false
 [user]
     name = Sebastian Zaha
     email = sebastian.zaha@gmail.com
@@ -29,8 +32,6 @@
     diff = auto
     status = auto
     branch = auto
-
-# Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
     remote = origin
     merge = refs/heads/master
@@ -40,10 +41,9 @@
 [push]
     default = simple
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpuser = sebastian.zaha@gmail.com
     smtpencryption = tls
     smtpserverport = 587
-
