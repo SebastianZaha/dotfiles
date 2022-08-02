@@ -54,7 +54,11 @@ set linebreak
 set showbreak=>>
 set breakindent
 set breakindentopt=sbr
- 
+
+" hide the '.' current directory entry in netrw
+let g:netrw_list_hide = '^\./$'
+let g:netrw_hide = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,6 +78,16 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" quickfix, location shortcuts
+nnoremap ]q :cnext<cr>
+nnoremap ]Q :clast<cr>
+nnoremap [q :cprev<cr>
+nnoremap [Q :cfirst<cr>
+nnoremap ]l :lnext<cr>
+nnoremap ]L :llast<cr>
+nnoremap [l :lprev<cr>
+nnoremap [L :lfirst<cr>
 
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>:tabclose<cr>gT
@@ -185,9 +199,10 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 Plug 'tpope/vim-fugitive'
-  nnoremap <Leader>g :Git<CR>gg<c-n>
-  nnoremap <Leader>d :Gdiff<CR>
+    nnoremap <Leader>g :Git<CR>gg<c-n>
+    nnoremap <Leader>d :Gdiff<CR>
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -195,6 +210,7 @@ Plug 'tpope/vim-surround'
 
 " programming languages
 Plug 'fatih/vim-go'
+    let g:go_template_autocreate = 0
 
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
