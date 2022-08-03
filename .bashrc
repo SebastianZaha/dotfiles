@@ -6,7 +6,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
-alias ls="ls --color"
+alias ls="ls -G"
 alias ll="ls -l -h -a -G"
 
 alias cutw="cut -d ' ' -f"
