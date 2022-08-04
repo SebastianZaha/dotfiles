@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias vim='nvim'
+
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
@@ -30,7 +32,7 @@ if [[ ! -v TERMUX_VERSION ]]; then
     export PATH=/usr/local/go/bin:usr/local/mysql/bin:$HOME/.rvm/bin:$PATH
 fi
 export PATH=$HOME/.local/bin:$PATH
-export EDITOR="vim"
+export EDITOR="nvim"
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 [ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"

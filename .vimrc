@@ -35,15 +35,10 @@ set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
+" Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set expandtab " Use spaces instead of tabs
-set smarttab  " Be smart when using tabs ;)
-
-" 1 tab == 4 spaces
+set noexpandtab " use tabs for indenting
 set shiftwidth=4
 set tabstop=4
 
@@ -54,24 +49,13 @@ set linebreak
 set showbreak=>>
 set breakindent
 set breakindentopt=sbr
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
-" hide the '.' current directory entry in netrw
-let g:netrw_list_hide = '^\./$'
-let g:netrw_hide = 1
-let g:netrw_banner = 0
 function! NetrwMapping()
-  " back in history
-  nmap <buffer> H u
   " up a dir
   nmap <buffer> h -^
   " into a dir / open file
   nmap <buffer> l <CR>
-  " toggle dotfiles 
-  nmap <buffer> . gh
 endfunction
-
 augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
@@ -90,7 +74,6 @@ vnoremap : ;
 nnoremap <C-]> g<C-]>
 nnoremap <C-[> :pop<cr>
 
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -108,23 +91,22 @@ nnoremap [l :lprev<cr>
 nnoremap [L :lfirst<cr>
 
 " Close the current buffer
-noremap <C-w>b :Bclose<cr>:tabclose<cr>gT
+noremap <C-w>b :Bclose<cr>
 
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" 'thin' cursor in insert mode
-" https://stackoverflow.com/a/42118416/1306453
+" 'thin' cursor in insert mode https://stackoverflow.com/a/42118416/1306453
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
-" Always show the status line
+" Always show
 set laststatus=2
 
 function! s:statusline_expr()
@@ -140,8 +122,6 @@ function! s:statusline_expr()
 endfunction
 let &statusline = s:statusline_expr()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -176,9 +156,7 @@ function! CmdLine(str)
     call feedkeys(":" . a:str)
 endfunction
 
-
 """"""""""""""""""""""""""""""
-
 
 syntax on             " Enable syntax highlighting
 
@@ -216,24 +194,25 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-    if has('nvim')
-        Plug 'neovim/nvim-lspconfig'
-    end 
+
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+end 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
-    nnoremap <Leader>g :Git<CR>gg<c-n>
-    nnoremap <Leader>d :Gdiff<CR>
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
   " ds, cs, yss, S in V mode
 
-" programming languages
 Plug 'fatih/vim-go'
     let g:go_template_autocreate = 0
+
+" - binding to jump to netrw, netrw saner defaults
+Plug 'tpope/vim-vinegar'
 
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
@@ -243,7 +222,6 @@ Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 colorscheme iceberg
-
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
