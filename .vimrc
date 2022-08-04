@@ -55,9 +55,27 @@ set showbreak=>>
 set breakindent
 set breakindentopt=sbr
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
 " hide the '.' current directory entry in netrw
 let g:netrw_list_hide = '^\./$'
 let g:netrw_hide = 1
+let g:netrw_banner = 0
+function! NetrwMapping()
+  " back in history
+  nmap <buffer> H u
+  " up a dir
+  nmap <buffer> h -^
+  " into a dir / open file
+  nmap <buffer> l <CR>
+  " toggle dotfiles 
+  nmap <buffer> . gh
+endfunction
+
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
