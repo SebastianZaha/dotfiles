@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Some aliases
-
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
@@ -14,11 +12,6 @@ alias dus="du -shx"
 
 alias pg="ps ax | grep"
 alias grep="grep --color=auto"
-
-alias e="emacs -nw"
-alias vi="nvim"
-alias vim="nvim"
-
 alias v="vgrep"
 
 alias gst="git status"
@@ -47,7 +40,6 @@ export LC_CTYPE="en_US.UTF-8"
 export LC_ALL=""
 
 #########################################################################
-# Save 5,000 lines of history in memory
 HISTSIZE=10000
 # Save 2,000,000 lines of history to disk (will have to grep ~/.bash_history for full listing)
 HISTFILESIZE=2000000

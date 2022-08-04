@@ -98,6 +98,10 @@ noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" 'thin' cursor in insert mode
+" https://stackoverflow.com/a/42118416/1306453
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -194,8 +198,9 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
-Plug 'neovim/nvim-lspconfig'
+    if has('nvim')
+        Plug 'neovim/nvim-lspconfig'
+    end 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
