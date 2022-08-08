@@ -5,7 +5,8 @@ set autoindent
 set autoread          " Autoload file changes. You can undo by pressing u 
 set backspace=indent,eol,start
 set display+=lastline
-set so=7 " cursor lines when at the top or bottom of the screen 
+set scrolloff=7 " cursor lines when at the top or bottom of the screen 
+set sidescrolloff=5
 set wildmenu
 set ignorecase " Ignore case when searching
 set smartcase " When searching try to be smart about cases
@@ -15,9 +16,12 @@ set novisualbell
 set foldcolumn=1 " Add a bit extra margin to the left
 set cursorline
 
+set splitbelow
+set splitright
+
 set encoding=utf8
 
-" Turn backup off, since most stuff is in SVN, git etc. anyway...
+" Turn backup off
 set nobackup
 set nowb
 set noswapfile
@@ -31,25 +35,39 @@ set number relativenumber
 
 set diffopt+=vertical,hiddenoff,algorithm:patience
 
+set laststatus=2 " Always show
+
 set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set noexpandtab " use tabs for indenting
 set shiftwidth=4
 set tabstop=4
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+set autoindent
+set smartindent
+set wrap
 set linebreak
 set showbreak=>>
 set breakindent
 set breakindentopt=sbr
+
+
+syntax on             " Enable syntax highlighting
+
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+set omnifunc=syntaxcomplete#Complete
+ 
+set history=10000
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw
+"
 function! NetrwMapping()
   " up a dir
   nmap <buffer> h -^
@@ -60,6 +78,9 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup END
+
+" Terminal
+nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>Acd $VIM_DIR<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -106,9 +127,6 @@ let &t_EI = "\e[2 q"
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
-" Always show
-set laststatus=2
-
 function! s:statusline_expr()
   let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
   let ro  = "%{&readonly ? '[RO] ' : ''}"
@@ -118,19 +136,11 @@ function! s:statusline_expr()
   let pos = ' %-12(%l : %c%V%) '
   let pct = ' %P'
 
-  return ' %{HasPaste()} [%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+  return '  [%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
 endfunction
 let &statusline = s:statusline_expr()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -158,26 +168,6 @@ endfunction
 
 """"""""""""""""""""""""""""""
 
-syntax on             " Enable syntax highlighting
-
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
-
-set omnifunc=syntaxcomplete#Complete
- 
-if &history < 1000
-  set history=1000
-endif
-
-" always show at least one line above / below the cursor 
-if !&scrolloff
-  set scrolloff=1
-endif
-if !&sidescrolloff
-  set sidescrolloff=5
-endif
-
 if has("unix") && filereadable("/proc/version")
   let lines = readfile("/proc/version")
   if lines[0] =~ "Microsoft"
@@ -194,34 +184,29 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
 if has('nvim')
 	Plug 'neovim/nvim-lspconfig'
 end 
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 Plug 'tpope/vim-fugitive'
-
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
   " ds, cs, yss, S in V mode
-
 Plug 'fatih/vim-go'
-    let g:go_template_autocreate = 0
-
 " - binding to jump to netrw, netrw saner defaults
 Plug 'tpope/vim-vinegar'
-
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
-
 " Colors
 Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 colorscheme iceberg
+
+" Go
+let g:go_template_autocreate = 0
+autocmd FileType go nnoremap <buffer> <leader>t :e .<CR>:GoTest ./...<CR>
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
