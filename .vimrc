@@ -131,12 +131,11 @@ function! s:statusline_expr()
   let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
   let ro  = "%{&readonly ? '[RO] ' : ''}"
   let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
-  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
   let sep = ' %= '
   let pos = ' %-12(%l : %c%V%) '
   let pct = ' %P'
 
-  return '  [%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+  return '  [%n] %F %<'.mod.ro.ft.sep.pos.'%*'.pct
 endfunction
 let &statusline = s:statusline_expr()
 
@@ -206,7 +205,9 @@ colorscheme iceberg
 
 " Go
 let g:go_template_autocreate = 0
-autocmd FileType go nnoremap <buffer> <leader>t :e .<CR>:GoTest ./...<CR>
+autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
+" open wd (project root) and run tests from there instead of just current package
+autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
@@ -221,11 +222,12 @@ inoremap <C-h> <C-o>h
 inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
-inoremap <C-^> <C-o><C-^>
+inoremap <C-6> <C-o><C-^>
 
-" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
-nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+" autocomplete
+inoremap <C-/> <C-x><C-o>
+
+" insert empty line above/below the cursor
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
@@ -233,6 +235,8 @@ nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 map <Leader>1 :diffget LOCAL<CR>
 map <Leader>2 :diffget BASE<CR>
 map <Leader>3 :diffget REMOTE<CR>
+
+noremap <Leader>d :Gvdiffsplit<CR>
 
 " ============================================================================
 " FZF {{{
