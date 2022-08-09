@@ -78,9 +78,20 @@ augroup netrw_mapping
 augroup END
 
 " Terminal
-nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>Acd $VIM_DIR<CR>
-if has("nvim")
-	autocmd TermClose * if !v:event.status | exe ':Bclose' | endif
+nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+if has('nvim')
+	autocmd TermOpen * startinsert
+	autocmd BufWinEnter,WinEnter term://* startinsert
+	
+	" autocmd TermClose * if !v:event.status && (match(expand('<amatch>'), '/bin/bash$') > -1) | exe(':Bclose') | endif
+	" Auto close shell terminals (#15440)
+	autocmd TermClose *
+		\ if !v:event.status |
+		\   let info = nvim_get_chan_info(&channel) |
+		\   if get(info, 'argv', []) ==# [&shell] |
+		\     exec ':Bclose' |
+		\   endif |
+		\ endif
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -114,6 +125,9 @@ nnoremap [L :lfirst<cr>
 
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>
+
+" Edit file in current directory 
+nnoremap <leader>e :e %:p:h/<Tab>
 
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
@@ -177,14 +191,14 @@ if has("unix") && filereadable("/proc/version")
 endif
 
 " auto install vim-plug on first starting vim
-let data_dir = has("nvim") ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
-if has("nvim")
+if has('nvim')
 	Plug 'neovim/nvim-lspconfig'
 end 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -203,6 +217,10 @@ Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 colorscheme iceberg
+
+
+" Auto close braces in insert mode
+inoremap {<CR> {<CR>}<Esc>O
 
 " Go
 let g:go_template_autocreate = 0
