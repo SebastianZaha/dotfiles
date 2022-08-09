@@ -65,9 +65,7 @@ set omnifunc=syntaxcomplete#Complete
  
 set history=10000
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw
-"
 function! NetrwMapping()
   " up a dir
   nmap <buffer> h -^
@@ -81,8 +79,11 @@ augroup END
 
 " Terminal
 nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>Acd $VIM_DIR<CR>
+if has("nvim")
+	autocmd TermClose * if !v:event.status | exe ':Bclose' | endif
+endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -165,7 +166,7 @@ function! CmdLine(str)
     call feedkeys(":" . a:str)
 endfunction
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 
 if has("unix") && filereadable("/proc/version")
   let lines = readfile("/proc/version")
@@ -176,14 +177,14 @@ if has("unix") && filereadable("/proc/version")
 endif
 
 " auto install vim-plug on first starting vim
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = has("nvim") ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
-if has('nvim')
+if has("nvim")
 	Plug 'neovim/nvim-lspconfig'
 end 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -217,19 +218,27 @@ nnoremap <C-s> :update<cr>
 nnoremap Q q
 nnoremap q <esc>:q<cr>
 
-" Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
+" To use `ALT+{h,j,k,l}` to navigate windows from any mode
+:tnoremap <A-h> <C-\><C-N><C-w>h
+:tnoremap <A-j> <C-\><C-N><C-w>j
+:tnoremap <A-k> <C-\><C-N><C-w>k
+:tnoremap <A-l> <C-\><C-N><C-w>l
+:inoremap <A-h> <C-\><C-N><C-w>h
+:inoremap <A-j> <C-\><C-N><C-w>j
+:inoremap <A-k> <C-\><C-N><C-w>k
+:inoremap <A-l> <C-\><C-N><C-w>l
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
 inoremap <C-6> <C-o><C-^>
 
 " autocomplete
 inoremap <C-/> <C-x><C-o>
 
 " insert empty line above/below the cursor
-nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " shortcuts for 3-way merge
 map <Leader>1 :diffget LOCAL<CR>

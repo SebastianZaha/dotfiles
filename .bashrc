@@ -3,8 +3,8 @@
 alias vim='nvim'
 
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
 
 alias ls="ls --color"
 alias ll="ls -l -h -a -G"
@@ -81,3 +81,5 @@ export RIPGREP_CONFIG_PATH=~/.ripgrep
 
 [ "$(tty)" = "/dev/tty1" ] && exec sway
 
+# .gitignored local configuration
+[ -f ~/.bashrc_local ] && source ~/.bashrc_local
