@@ -41,7 +41,6 @@ set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-
 set noexpandtab " use tabs for indenting
 set shiftwidth=4
 set tabstop=4
@@ -54,7 +53,6 @@ set showbreak=>>
 set breakindent
 set breakindentopt=sbr
 
-
 syntax on             " Enable syntax highlighting
 
 filetype on           " Enable filetype detection
@@ -65,39 +63,6 @@ set omnifunc=syntaxcomplete#Complete
  
 set history=10000
 
-" Netrw
-function! NetrwMapping()
-  " up a dir
-  nmap <buffer> h -^
-  " into a dir / open file
-  nmap <buffer> l <CR>
-endfunction
-augroup netrw_mapping
-  autocmd!
-  autocmd filetype netrw call NetrwMapping()
-augroup END
-
-" Terminal
-nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-if has('nvim')
-	autocmd TermOpen * startinsert
-	autocmd BufWinEnter,WinEnter term://* startinsert
-	
-	" autocmd TermClose * if !v:event.status && (match(expand('<amatch>'), '/bin/bash$') > -1) | exe(':Bclose') | endif
-	" Auto close shell terminals (#15440)
-	autocmd TermClose *
-		\ if !v:event.status |
-		\   let info = nvim_get_chan_info(&channel) |
-		\   if get(info, 'argv', []) ==# [&shell] |
-		\     exec ':Bclose' |
-		\   endif |
-		\ endif
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
@@ -106,12 +71,6 @@ vnoremap : ;
 " Tags
 nnoremap <C-]> g<C-]>
 nnoremap <C-[> :pop<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " quickfix, location shortcuts
 nnoremap ]q :cnext<cr>
@@ -126,9 +85,6 @@ nnoremap [L :lfirst<cr>
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>
 
-" Edit file in current directory 
-nnoremap <leader>e :e %:p:h/<Tab>
-
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 
@@ -138,6 +94,89 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " 'thin' cursor in insert mode https://stackoverflow.com/a/42118416/1306453
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" Auto close braces in insert mode
+inoremap {<CR> {<CR>}<Esc>O
+
+" Go
+let g:go_template_autocreate = 0
+autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
+" open wd (project root) and run tests from there instead of just current package
+autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
+
+" Save
+inoremap <C-s> <C-O>:update<cr><esc>
+nnoremap <C-s> :update<cr>
+
+" Quit
+nnoremap Q q
+nnoremap q <esc>:q<cr>
+
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+
+" To use `ALT+{h,j,k,l}` to navigate windows from any mode
+:tnoremap <A-h> <C-\><C-N><C-w>h
+:tnoremap <A-j> <C-\><C-N><C-w>j
+:tnoremap <A-k> <C-\><C-N><C-w>k
+:tnoremap <A-l> <C-\><C-N><C-w>l
+:inoremap <A-h> <C-\><C-N><C-w>h
+:inoremap <A-j> <C-\><C-N><C-w>j
+:inoremap <A-k> <C-\><C-N><C-w>k
+:inoremap <A-l> <C-\><C-N><C-w>l
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
+inoremap <C-6> <C-o><C-^>
+
+" autocomplete
+inoremap <C-/> <C-x><C-o>
+
+" insert empty line above/below the cursor
+nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" shortcuts for 3-way merge
+map <Leader>1 :diffget LOCAL<CR>
+map <Leader>2 :diffget BASE<CR>
+map <Leader>3 :diffget REMOTE<CR>
+
+" git
+noremap <leader>gs :G<CR><C-w>T
+noremap <Leader>gp :Git push<CR>
+noremap <Leader>d :Gvdiffsplit<CR>
+
+
+" auto install vim-plug on first starting vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+end 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+  " ds, cs, yss, S in V mode
+Plug 'fatih/vim-go'
+" - binding to jump to netrw, netrw saner defaults
+Plug 'tpope/vim-vinegar'
+" clears search highlighting after you finish incremental search  
+Plug 'romainl/vim-cool'
+" Colors
+Plug 'cocopon/iceberg.vim'
+call plug#end()
+
+colorscheme iceberg
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -180,7 +219,6 @@ function! CmdLine(str)
     call feedkeys(":" . a:str)
 endfunction
 
-"""""""""""""""""""""""""""""
 
 if has("unix") && filereadable("/proc/version")
   let lines = readfile("/proc/version")
@@ -190,80 +228,37 @@ if has("unix") && filereadable("/proc/version")
   endif
 endif
 
-" auto install vim-plug on first starting vim
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
+" Netrw
+function! NetrwMapping()
+  " up a dir
+  nmap <buffer> h -^
+  " into a dir / open file
+  nmap <buffer> l <CR>
+endfunction
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
+
+
+" Terminal
+nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+if has('nvim')
+	autocmd TermOpen * startinsert
+	autocmd BufWinEnter,WinEnter term://* startinsert
+	
+	" autocmd TermClose * if !v:event.status && (match(expand('<amatch>'), '/bin/bash$') > -1) | exe(':Bclose') | endif
+	" Auto close shell terminals (#15440)
+	autocmd TermClose *
+		\ if !v:event.status |
+		\   let info = nvim_get_chan_info(&channel) |
+		\   if get(info, 'argv', []) ==# [&shell] |
+		\     exec ':Bclose' |
+		\   endif |
+		\ endif
 endif
 
-call plug#begin('~/.vim/plugged')
-if has('nvim')
-	Plug 'neovim/nvim-lspconfig'
-end 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-  " ds, cs, yss, S in V mode
-Plug 'fatih/vim-go'
-" - binding to jump to netrw, netrw saner defaults
-Plug 'tpope/vim-vinegar'
-" clears search highlighting after you finish incremental search  
-Plug 'romainl/vim-cool'
-" Colors
-Plug 'cocopon/iceberg.vim'
-call plug#end()
-
-colorscheme iceberg
-
-
-" Auto close braces in insert mode
-inoremap {<CR> {<CR>}<Esc>O
-
-" Go
-let g:go_template_autocreate = 0
-autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
-" open wd (project root) and run tests from there instead of just current package
-autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
-
-" Save
-inoremap <C-s> <C-O>:update<cr><esc>
-nnoremap <C-s> :update<cr>
-
-" Quit
-nnoremap Q q
-nnoremap q <esc>:q<cr>
-
-" To use `ALT+{h,j,k,l}` to navigate windows from any mode
-:tnoremap <A-h> <C-\><C-N><C-w>h
-:tnoremap <A-j> <C-\><C-N><C-w>j
-:tnoremap <A-k> <C-\><C-N><C-w>k
-:tnoremap <A-l> <C-\><C-N><C-w>l
-:inoremap <A-h> <C-\><C-N><C-w>h
-:inoremap <A-j> <C-\><C-N><C-w>j
-:inoremap <A-k> <C-\><C-N><C-w>k
-:inoremap <A-l> <C-\><C-N><C-w>l
-:nnoremap <A-h> <C-w>h
-:nnoremap <A-j> <C-w>j
-:nnoremap <A-k> <C-w>k
-:nnoremap <A-l> <C-w>l
-inoremap <C-6> <C-o><C-^>
-
-" autocomplete
-inoremap <C-/> <C-x><C-o>
-
-" insert empty line above/below the cursor
-nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" shortcuts for 3-way merge
-map <Leader>1 :diffget LOCAL<CR>
-map <Leader>2 :diffget BASE<CR>
-map <Leader>3 :diffget REMOTE<CR>
-
-noremap <Leader>d :Gvdiffsplit<CR>
 
 " ============================================================================
 " FZF {{{
