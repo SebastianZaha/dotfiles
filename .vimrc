@@ -100,9 +100,14 @@ inoremap {<CR> {<CR>}<Esc>O
 
 " Go
 let g:go_template_autocreate = 0
+augroup vim_go_plugin
+autocmd!
 autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
 " open wd (project root) and run tests from there instead of just current package
 autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
+autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>
+augroup END
+
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
