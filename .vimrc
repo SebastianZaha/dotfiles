@@ -72,15 +72,22 @@ vnoremap : ;
 nnoremap <C-]> g<C-]>
 nnoremap <C-[> :pop<cr>
 
-" quickfix, location shortcuts
+" quickfix
 nnoremap ]q :cnext<cr>
 nnoremap ]Q :clast<cr>
 nnoremap [q :cprev<cr>
 nnoremap [Q :cfirst<cr>
+" location
 nnoremap ]l :lnext<cr>
 nnoremap ]L :llast<cr>
 nnoremap [l :lprev<cr>
 nnoremap [L :lfirst<cr>
+" buffers
+nnoremap ]b :bnext<cr> 
+nnoremap [b :bprev<cr>
+" tabs
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
 
 " Close the current buffer
 noremap <C-w>b :Bclose<cr>
@@ -168,6 +175,7 @@ if has('nvim')
 end 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -317,7 +325,10 @@ function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --no-ignore-parent --hidden --line-number --no-heading --color=always --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
-  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  let options = {'options': [
+			  \ '--disabled', '--query', a:query, '--prompt', '1. ripgrep> ',
+			  \ '--bind', 'change:reload:sleep 0.1; '.reload_command,
+			  \ '--bind', "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query"]}
   let options = fzf#vim#with_preview(options, 'up:50%:wrap', 'ctrl-/')
   call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
 endfunction
