@@ -326,6 +326,7 @@ function! RipgrepFzf(query, fullscreen)
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let options = {'options': [
+	  		  \ '--reverse',
 			  \ '--disabled', '--query', a:query, '--prompt', '1. ripgrep> ',
 			  \ '--bind', 'change:reload:sleep 0.1; '.reload_command,
 			  \ '--bind', "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query"]}
