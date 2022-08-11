@@ -66,11 +66,8 @@ stty -ixon
 # and I never use it (or know how to)
 set +H 
 
-function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
-function CLOSE_COLOR () { echo -ne '\e[m'; }
-export PS1=":\[$(EXT_COLOR 30)\]\h\[$(CLOSE_COLOR)\]\[$(EXT_COLOR 174)\] \w\[$(CLOSE_COLOR)\]; "
-export LS_COLORS='di=38;5;108:fi=00:*svn-commit.tmp=31:ln=38;5;116:ex=38;5;186'
 unset PROMPT_COMMAND
+export PS1=":\h \w;  "
 
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
