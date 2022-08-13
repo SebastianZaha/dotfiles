@@ -16,12 +16,11 @@
     # Detect whitespace errors when applying a patch
     whitespace = fix
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
-    # Include summaries of merged commits in newly created merge commit messages
-    log = true
-[mergetool]
-    prompt = false
+   tool = vimdiff
+[difftool "vimdiff"]
+    cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+[mergetool "vimdiff"]
+    cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [user]
     name = Sebastian Zaha
     email = sebastian.zaha@gmail.com
