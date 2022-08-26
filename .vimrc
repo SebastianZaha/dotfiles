@@ -207,6 +207,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'romainl/vim-cool'
 " Colors
 Plug 'cocopon/iceberg.vim'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 colorscheme iceberg

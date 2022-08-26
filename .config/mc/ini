@@ -81,7 +81,7 @@ editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
 ignore_ftp_chattr_errors=true
-skin=default
+skin=seasons-spring16M
 
 filepos_max_saved_entries=1024
 
@@ -89,7 +89,7 @@ editor_state_full_filename=true
 
 safe_overwrite=false
 
-shadows=true
+shadows=false
 
 [Layout]
 message_visible=false
@@ -101,7 +101,7 @@ menubar_visible=false
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=102
+left_panel_size=57
 horizontal_equal=true
 top_panel_size=1
 

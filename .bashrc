@@ -1,14 +1,25 @@
 #!/bin/bash
 
+case "$(uname -s)" in
+	Darwin)
+		alias ls="ls -G"
+		# -l use a long listing format
+		alias ll="ls -l --human-readable --all -G"
+		alias netstatosx="sudo lsof -i -n -P | grep TCP"
+		;;
+	Linux)
+		alias ls='ls --color=auto'
+		# -l use a long listing format
+		alias ll="ls -l --human-readable --all --color=auto"
+		alias mkpkg="makepkg --syncdeps --install --clean && git clean -dfx"
+		;;
+esac
+
 alias vim='nvim'
 
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-
-alias ls="ls -G"
-alias ll="ls -l -h -a -G"
-
 alias cutw="cut -d ' ' -f"
 alias dus="du -shx"
 
@@ -21,10 +32,6 @@ alias gcm="git commit --all --verbose"
 alias gp="git push"
 
 alias b="bundle exec"
-
-alias netstatosx="sudo lsof -i -n -P | grep TCP"
-
-alias mkpkg="makepkg --syncdeps --install --clean && git clean -dfx"
 
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
