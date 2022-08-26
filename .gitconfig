@@ -5,9 +5,8 @@
     p = !"git pull; git submodule foreach git pull origin master"
     cl = clone --recursive
     co = checkout
-    c = commit -a -v
-    go = checkout -B
-    tags = tag -l
+    c = commit -v
+	ca = commit -a -v
     remotes = remote -v
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
     undopush = push -f origin HEAD^:master
