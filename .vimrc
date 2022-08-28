@@ -263,6 +263,10 @@ if has("unix") && filereadable("/proc/version")
 endif
 
 
+" open file in other window (previously focused) by default
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+
 " Netrw
 function! NetrwMapping()
   " up a dir
