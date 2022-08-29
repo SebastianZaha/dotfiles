@@ -36,7 +36,7 @@ alias b="bundle exec"
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 if [[ ! -v TERMUX_VERSION ]]; then
-    export PATH=/usr/local/go/bin:usr/local/mysql/bin:$HOME/.rvm/bin:$PATH
+    export PATH=/usr/local/go/bin:usr/local/mysql/bin:$HOME/.rvm/bin:$HOME/devel/_android/platform-tools:$PATH
 fi
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR="nvim"
@@ -66,13 +66,6 @@ shopt -s cmdhist
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 #########################################################################
 
-# disable Ctrl-s to 'lock' the tty
-stty -ixon
-
-# disable history expansion, it just messes up my usage of ! in other commands, 
-# and I never use it (or know how to)
-set +H 
-
 unset PROMPT_COMMAND
 export PS1=":\h \w;  "
 
@@ -81,9 +74,20 @@ export PS1=":\h \w;  "
 
 export RIPGREP_CONFIG_PATH=~/.ripgrep
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-[ "$(tty)" = "/dev/tty1" ] && exec sway
-
 # .gitignored local configuration
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
+
+# only for interactive shells
+if [[ $- == *i* ]]; then
+	# disable Ctrl-s to 'lock' the tty 
+	stty -ixon
+
+	# disable history expansion, it just messes up my usage of ! in other commands, 
+	# and I never use it (or know how to)
+	set +H 
+
+	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+	[ "$(tty)" = "/dev/tty1" ] && exec sway
+fi
+
