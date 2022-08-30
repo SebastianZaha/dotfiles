@@ -197,12 +197,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-  " ds, cs, yss, S in V mode
 Plug 'fatih/vim-go'
-" - binding to jump to netrw, netrw saner defaults
-Plug 'tpope/vim-vinegar'
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
 " Colors
@@ -266,6 +261,8 @@ endif
 " open file in other window (previously focused) by default
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
+let g:netrw_list_hide= '^\.\/$,\.\.\/$'
+let g:netrw_banner = 0
 
 " Netrw
 function! NetrwMapping()
