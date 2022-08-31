@@ -53,6 +53,12 @@ set showbreak=>>
 set breakindent
 set breakindentopt=sbr
 
+" gvim
+set guioptions-=m  "no menu
+set guioptions-=T  "no toolbar
+set guioptions-=R  "no right scrollbar
+set guioptions-=L  "no left scrollbar
+
 syntax on             " Enable syntax highlighting
 
 filetype on           " Enable filetype detection
@@ -206,6 +212,7 @@ Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 colorscheme iceberg
+set background=light
 
 """"""""""""""""""""""""""""""
 " => Status line
