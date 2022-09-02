@@ -108,9 +108,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-" Auto close braces in insert mode
-inoremap {<CR> {<CR>}<Esc>O
-
 " Go
 let g:go_template_autocreate = 0
 augroup vim_go_plugin
