@@ -297,64 +297,34 @@ if has('nvim')
 		\ endif
 endif
 
-
-" ============================================================================
-
-let $FZF_DEFAULT_OPTS .= ' --inline-info'
-
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
-let g:fzf_preview_window = ['up:50%:wrap', 'ctrl-/']
-let g:fzf_tags_command = 'ctags -R'
-
-" Customize fzf colors to match your color scheme
-" - fzf#wrap translates this to a set of `--color` options
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" FZF
 
 nnoremap <silent> <leader><space> :AllFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>w :Windows<CR>
-nnoremap <silent> <leader>C :Colors<CR>
-nnoremap <silent> <leader>: :BLines<CR>
-nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 " command history
 nnoremap <silent> <leader>; :History:<CR> 
 nnoremap <silent> <leader>/ :execute 'RG! ' . input('Rg/')<CR>
-nnoremap <silent> <Leader>rg :RG! <C-R><C-W><CR>
-nnoremap <silent> <Leader>RG :RG! <C-R><C-A><CR>
-xnoremap <silent> <Leader>rg y:RG! <C-R>"<CR>
+nnoremap <silent> <Leader>w/ :RG! <C-R><C-W><CR>
 
-" All files
+" All files:
+" - include hidden
+" - don’t respect ignore files (.gitignore, .ignore, etc.) in parent directories
 command! -nargs=? -complete=dir AllFiles
   \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
   \   'source': 'rg --files --no-ignore-parent --hidden -g "!.git" '.expand(<q-args>)
   \ })))
 
-function! RipgrepFzf(query, fullscreen)
+function! RipgrepFzf(query)
   let command_fmt = 'rg --column --no-ignore-parent --hidden --line-number --no-heading --color=always --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
+  let reload_command  = printf(command_fmt, '{q}')
   let options = {'options': [
-	  		  \ '--reverse',
-			  \ '--disabled', '--query', a:query, '--prompt', '1. ripgrep> ',
+	  		  \ '--reverse', '--disabled', '--query', a:query, '--prompt', '1. ripgrep> ',
 			  \ '--bind', 'change:reload:sleep 0.1; '.reload_command,
 			  \ '--bind', "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query"]}
-  let options = fzf#vim#with_preview(options, 'up:50%:wrap', 'ctrl-/')
-  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+  let options = fzf#vim#with_preview(options)
+  call fzf#vim#grep(initial_command, 1, options)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>)
