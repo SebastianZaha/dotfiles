@@ -9,6 +9,8 @@
 " - even less highlighting in code
 " - no bold
 " - solar-ish bg and fg
+" - Define is used to highlight method and type definitions, as a structural
+"   hint when browsing code
 
 set background=light
 
@@ -138,6 +140,7 @@ Hi Constant black NONE NONE
 Hi Cursor NONE lgrey1 NONE
 Hi CursorLine NONE lbackground NONE
 Hi CursorLineNR black NONE bold
+Hi Define blue NONE NONE
 Hi Directory black NONE NONE
 Hi ErrorMsg red NONE NONE
 Hi FoldColumn black background NONE
@@ -194,6 +197,8 @@ hi! link Type Keyword
 hi! link Visual Cursor
 hi! link WildMenu PmenuSel
 
+Hi SpecialString grey NONE NONE
+
 " These highlight groups can be used for statuslines, for example when
 " displaying ALE warnings and errors.
 Hi WhiteOnOrange white orange NONE
@@ -233,6 +238,10 @@ Hi FugitiveblameTime blue NONE NONE
 Hi FugitiveblameHash purple NONE NONE
 hi! link gitCommitOverflow ErrorMsg
 hi! link gitCommitSummary String
+
+" Go
+hi! link goDeclaration Define
+hi! link goSpecialString SpecialString
 
 " HAML
 Hi hamlClass black NONE NONE
@@ -308,22 +317,10 @@ hi! link podCommand Comment
 hi! link podVerbatimLine Todo
 
 " Ruby
-hi! link rubyAttribute Identifier
-hi! link rubyClass Keyword
-hi! link rubyClassVariable rubyInstancevariable
-hi! link rubyConstant Constant
-hi! link rubyDefine Keyword
-hi! link rubyFunction Function
-hi! link rubyInstanceVariable Directory
-hi! link rubyMacro Identifier
-hi! link rubyModule rubyClass
-hi! link rubyRegexp Regexp
-hi! link rubyRegexpCharClass Regexp
-hi! link rubyRegexpDelimiter Regexp
-hi! link rubyRegexpQuantifier Regexp
-hi! link rubyRegexpSpecial Regexp
-hi! link rubyStringDelimiter String
-hi! link rubySymbol Regexp
+hi! link rubyStringEscape SpecialString
+hi! link rubyInterpolationDelimiter SpecialString
+hi! link rubyMethodDeclaration Define
+hi! link rubyFunction Define 
 
 " Rust
 hi! link rustCommentBlockDoc Comment
