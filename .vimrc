@@ -59,11 +59,9 @@ set guioptions-=T  "no toolbar
 set guioptions-=R  "no right scrollbar
 set guioptions-=L  "no left scrollbar
 
-syntax on             " Enable syntax highlighting
-
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
+filetype on            " filetype detection
+filetype indent off    " filetype-specific indenting
+filetype plugin off    " filetype-specific plugins
 
 set omnifunc=syntaxcomplete#Complete
  
@@ -203,12 +201,19 @@ Plug 'fatih/vim-go'
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'
 " Colors
-Plug 'cocopon/iceberg.vim'
-Plug 'altercation/vim-colors-solarized'
+" ideas: https://github.com/mcchrish/vim-no-color-collections
+" light
+" Plug 'https://gitlab.com/yorickpeterse/vim-paper'
+" Plug 'https://gitlab.com/yorickpeterse/nvim-grey.git'
+" dark
+" Plug 'https://gitlab.com/yorickpeterse/happy_hacking.vim.git'
+" Plug 'cocopon/iceberg.vim'
 call plug#end()
 
-colorscheme iceberg
+syntax on " syntax highlighting
+set termguicolors
 set background=light
+colorscheme solar_paper
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -328,3 +333,9 @@ function! RipgrepFzf(query)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>)
+
+" starting vim in the 'root' of a project that has a '.vimlocal' file
+" will load the project specific configuration
+if filereadable('.vimlocal')
+	source .vimlocal
+endif
