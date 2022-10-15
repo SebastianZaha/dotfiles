@@ -33,7 +33,7 @@ set ttimeoutlen=1
 
 set number relativenumber
 
-set diffopt+=vertical,hiddenoff,algorithm:patience
+set diffopt+=vertical,hiddenoff,closeoff,algorithm:patience
 
 set laststatus=2 " Always show
 
@@ -326,6 +326,7 @@ function! RipgrepFzf(query)
   let reload_command  = printf(command_fmt, '{q}')
   let options = {'options': [
 	  		  \ '--reverse', '--disabled', '--query', a:query, '--prompt', '1. ripgrep> ',
+			  \ '--bind', 'ctrl-q:select-all,ctrl-w:deselect-all',
 			  \ '--bind', 'change:reload:sleep 0.1; '.reload_command,
 			  \ '--bind', "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query"]}
   let options = fzf#vim#with_preview(options)
