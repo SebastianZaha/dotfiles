@@ -6,7 +6,6 @@ image/tiff=imv.desktop
 image/svg+xml=imv.desktop
 image/gif=imv.desktop
 text/html=firefox.desktop
-
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
@@ -15,3 +14,6 @@ application/x-extension-html=firefox.desktop
 application/x-extension-shtml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
+
+[Added Associations]
+text/calendar=thunderbird.desktop;firefox.desktop;

@@ -20,16 +20,9 @@ alias vim='nvim'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias cutw="cut -d ' ' -f"
-alias dus="du -shx"
 
 alias pg="ps ax | grep"
 alias grep="grep --color=auto"
-alias v="vgrep"
-
-alias gst="git status"
-alias gcm="git commit --all --verbose"
-alias gp="git push"
 
 alias b="bundle exec"
 
@@ -67,7 +60,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 #########################################################################
 
 unset PROMPT_COMMAND
-export PS1=":\h \w;  "
+export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;32m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
 
 # Initialize RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
