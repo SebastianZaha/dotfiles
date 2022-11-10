@@ -41,9 +41,9 @@ set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-set noexpandtab " use tabs for indenting
-set shiftwidth=4
-set tabstop=4
+set expandtab " use spaces for indenting
+set shiftwidth=2
+set tabstop=2
 
 set autoindent
 set smartindent
@@ -115,6 +115,10 @@ autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
 autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
 autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>
 augroup END
+
+" just disable the annoying Ctrl-C bind in sql files.
+" I'm using it to exit edit mode.
+let g:ftplugin_sql_omni_key = '<C-ș>'
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>

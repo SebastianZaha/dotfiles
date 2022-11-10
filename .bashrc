@@ -28,10 +28,10 @@ alias b="bundle exec"
 
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
+export PATH=$PATH:$HOME/.local/bin
 if [[ ! -v TERMUX_VERSION ]]; then
-    export PATH=/usr/local/go/bin:usr/local/mysql/bin:$HOME/.rvm/bin:$PATH:$HOME/devel/_android/platform-tools
+    export PATH=$PATH:/usr/local/go/bin:usr/local/mysql/bin:$HOME/devel/_android/platform-tools
 fi
-export PATH=$HOME/.local/bin:$PATH
 export EDITOR="nvim"
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
