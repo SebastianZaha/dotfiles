@@ -2,13 +2,13 @@
 " Description:  Modified version of the brilliant paper theme 
 " Author:       Sebastian Zaha <sebastian.zaha@gmail.com>
 " Maintainer:   Sebastian Zaha <sebastian.zaha@gmail.com>
-" Website:      https://gitlab.com/yorickpeterse/paper.vim
+" Website:      https://gitlab.com/yorickpeterse/vim-paper
 " License:      MPL 2.0
 
 " Main changes
 " - even less highlighting in code
 " - no bold
-" - solar-ish bg and fg
+" - solarized-ish bg and fg
 " - Define is used to highlight method and type definitions, as a structural
 "   hint when browsing code
 
