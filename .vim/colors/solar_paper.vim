@@ -1,7 +1,7 @@
 " Name:         Solar Paper
 " Description:  Modified version of the brilliant paper theme 
-" Author:       Sebastian Zaha <s@tla.ro>
-" Maintainer:   Sebastian Zaha <s@tla.ro>
+" Author:       Sebastian Zaha <sebastian.zaha@gmail.com>
+" Maintainer:   Sebastian Zaha <sebastian.zaha@gmail.com>
 " Website:      https://gitlab.com/yorickpeterse/paper.vim
 " License:      MPL 2.0
 
