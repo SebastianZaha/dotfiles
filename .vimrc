@@ -114,11 +114,15 @@ autocmd FileType go nnoremap <buffer> <leader>t :GoTest ./...<CR>
 " open wd (project root) and run tests from there instead of just current package
 autocmd FileType go nnoremap <buffer> <leader>T :e .<CR>:GoTest ./...<CR>
 autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>
+autocmd FileType go nnoremap <buffer> <leader>gr :GoReferrers<CR>
 augroup END
 
 " just disable the annoying Ctrl-C bind in sql files.
 " I'm using it to exit edit mode.
 let g:ftplugin_sql_omni_key = '<C-ș>'
+
+" Large screen layout: 3 vertical splits, last one with a netrw and a terminal
+nnoremap <F2> :vs<CR>:vs<CR>:E<CR>:sp<CR>:term<CR>
 
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
