@@ -1,7 +1,6 @@
 set mouse=a
 set nocompatible      " We're running Vim, not Vi!
 set incsearch
-set autoindent
 set autoread          " Autoload file changes. You can undo by pressing u 
 set backspace=indent,eol,start
 set display+=lastline
@@ -41,9 +40,9 @@ set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-set expandtab " use spaces for indenting
-set shiftwidth=2
-set tabstop=2
+set noexpandtab " use tabs for indenting
+set shiftwidth=4
+set tabstop=4
 
 set autoindent
 set smartindent
@@ -59,9 +58,7 @@ set guioptions-=T  "no toolbar
 set guioptions-=R  "no right scrollbar
 set guioptions-=L  "no left scrollbar
 
-filetype on            " filetype detection
-filetype indent off    " filetype-specific indenting
-filetype plugin off    " filetype-specific plugins
+filetype indent plugin on
 
 set omnifunc=syntaxcomplete#Complete
  
@@ -105,6 +102,19 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " 'thin' cursor in insert mode https://stackoverflow.com/a/42118416/1306453
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+function! SetupSource()
+    " Disable auto-wrap for text
+    set formatoptions-=t
+
+    " Automatically insert comment leaders:
+    "   r - automatically insert comment leader when pressing <Enter>.
+    "   o - automatically insert comment leader after 'o' or 'O'.
+    setlocal formatoptions+=ro
+
+    setlocal tw=80 ts=4 sts=4 sw=4 noet
+endfunction
+command! -bar SetupSource call SetupSource()
 
 " Go
 let g:go_template_autocreate = 0
