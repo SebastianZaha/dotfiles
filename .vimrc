@@ -40,7 +40,7 @@ set clipboard+=unnamedplus
 
 let mapleader = "\<Space>"
 
-set noexpandtab " use tabs for indenting
+set expandtab " use spaces for indenting
 set shiftwidth=4
 set tabstop=4
 
@@ -218,6 +218,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go'
 " clears search highlighting after you finish incremental search  
 Plug 'romainl/vim-cool'

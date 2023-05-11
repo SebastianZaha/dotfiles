@@ -1,15 +1,15 @@
 ;; Manage packages. Install the following if they do not exist. Handy on fresh installs.
 (require 'package)
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit
-                      starter-kit-ruby starter-kit-js starter-kit-bindings 
+(defvar my-packages '(;;starter-kit
+                      ;;starter-kit-ruby starter-kit-js starter-kit-bindings 
                       zenburn-theme 
                       flx-ido rainbow-delimiters smartparens 
                       markdown-mode
