@@ -1,32 +1,32 @@
-;; Manage packages. Install the following if they do not exist. Handy on fresh installs.
 (require 'package)
-
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(defvar rc/package-contents-refreshed nil)
 
-(defvar my-packages '(;;starter-kit
-                      ;;starter-kit-ruby starter-kit-js starter-kit-bindings 
-                      zenburn-theme 
-                      flx-ido rainbow-delimiters smartparens 
-                      markdown-mode
-                      )
-  "A list of packages to ensure are installed at launch.")
+(defun rc/package-refresh-contents-once ()
+  (when (not rc/package-contents-refreshed)
+    (setq rc/package-contents-refreshed t)
+    (package-refresh-contents)))
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(defun rc/require-one-package (package)
+  (when (not (package-installed-p package))
+    (rc/package-refresh-contents-once)
+    (package-install package)))
 
+(defun rc/require (&rest packages)
+  (dolist (package packages)
+    (rc/require-one-package package)))
+
+(rc/require 'smex 'ido-completing-read+ 'zenburn-theme 'magit)
+
+(require 'ido-completing-read+)
+
+(global-set-key (kbd "M-x") 'smex)
 
 ;; Paths
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
-
-;; Executables
-(setq exec-path (append exec-path '("/usr/local/bin/")))
 
 ;; Remove all bells
 (setq ring-bell-function 'ignore)
@@ -87,6 +87,9 @@
 
 (menu-bar-mode 1)
 (tool-bar-mode 0)
+(scroll-bar-mode 0)
+(column-number-mode 1)
+(global-display-line-numbers-mode 0)
 
 ;; Color
 (load-theme 'zenburn t)
@@ -116,19 +119,8 @@
       (set-frame-height (selected-frame) 51)
       (set-frame-width (selected-frame) 100)))
 
-;; Project management
-;; (projectile-global-mode)
-;; (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
-;; (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
-;; (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
-;; (define-key projectile-mode-map [?\s-g] 'projectile-grep)
-
-(require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-use-faces nil)
 
 ;; Custom bindings
 
@@ -167,11 +159,6 @@
 
 ;; Coding tools
 (global-set-key (kbd "M-/") 'hippie-expand)
-
-
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 
 ;; Jump to a column on current line. Useful when debugging some of those obnoxious js stack traces
 (defun goto-column-number (number)
@@ -220,38 +207,16 @@
   (setq quack-fontify-style 'emacs))
 (add-hook 'scheme-mode-hook 'scheme-mode-quack-hook)
 
-;; Rainbow delimiters
+;; rainbow delimiters
 (require 'rainbow-delimiters)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
-;; (require 'smartparens-config)
-;; (smartparens-global-mode t)
-
-
-;; Ruby
-(defun inf-ruby-set-pry-hook ()
-  (setq inf-ruby-default-implementation "pry"))
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
-(add-hook 'after-init-hook 'inf-ruby-switch-setup)
-(add-hook 'inf-ruby-mode-hook 'inf-ruby-set-pry-hook)
-
-
-;; Go
-
-;; TODO
-;; Navigation
-(global-set-key (kbd "s-t") 'ffip)
-
-;; grep (ack) in project
-
-;; jump to definition
-
-;; svn / git integration - browse history, review changes before commit
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit zenburn-theme toml-mode starter-kit-ruby starter-kit-js starter-kit-bindings smartparens rust-mode rainbow-delimiters quack php-mode markdown-mode lua-mode go-mode go-autocomplete flycheck flx-ido company arduino-mode)))
+   '(smex magit zenburn-theme toml-mode starter-kit-ruby starter-kit-js starter-kit-bindings smartparens rust-mode rainbow-delimiters quack php-mode markdown-mode lua-mode go-mode go-autocomplete flycheck flx-ido company arduino-mode))
+ '(xref-search-program 'ripgrep))
 
