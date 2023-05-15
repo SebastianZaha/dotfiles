@@ -85,8 +85,18 @@
 ;; keyboard scroll one line at a time
 (setq scroll-step 1)
 
+(menu-bar-mode 1)
+(tool-bar-mode 0)
+
 ;; Color
 (load-theme 'zenburn t)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 130 :family "Jetbrains Mono")))))
 
 ;; Server
 (require 'server)
@@ -131,8 +141,8 @@
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
 
 ;; Documentation, dash support
-(global-set-key "\C-cd" 'dash-at-point)
-(global-set-key "\C-ce" 'dash-at-point-with-docset)
+;; (global-set-key "\C-cd" 'dash-at-point)
+;; (global-set-key "\C-ce" 'dash-at-point-with-docset)
 ;; (add-to-list 'dash-at-point-mode-alist '(perl-mode . "perl"))
 ;; (add-hook 'rinari-minor-mode-hook
 ;;          (lambda () (setq dash-at-point-docset "rails")))
@@ -214,8 +224,8 @@
 (require 'rainbow-delimiters)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
-(require 'smartparens-config)
-(smartparens-global-mode t)
+;; (require 'smartparens-config)
+;; (smartparens-global-mode t)
 
 
 ;; Ruby
@@ -243,11 +253,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-	(zenburn-theme toml-mode starter-kit-ruby starter-kit-js starter-kit-bindings smartparens rust-mode rainbow-delimiters quack php-mode markdown-mode lua-mode go-mode go-autocomplete flycheck flx-ido company arduino-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+   '(magit zenburn-theme toml-mode starter-kit-ruby starter-kit-js starter-kit-bindings smartparens rust-mode rainbow-delimiters quack php-mode markdown-mode lua-mode go-mode go-autocomplete flycheck flx-ido company arduino-mode)))
+

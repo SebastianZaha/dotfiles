@@ -137,6 +137,9 @@ let g:ftplugin_sql_omni_key = '<C-ș>'
 " Large screen layout: 3 vertical splits, last one with a netrw and a terminal
 nnoremap <F2> :vs<CR>:vs<CR>:E<CR>:sp<CR>:term<CR>
 
+noremap  <F5> :Make<CR>
+tnoremap <F5> <C-\><C-N>:Make<CR>
+
 " Save
 inoremap <C-s> <C-O>:update<cr><esc>
 nnoremap <C-s> :update<cr>
