@@ -85,7 +85,7 @@
 ;; keyboard scroll one line at a time
 (setq scroll-step 1)
 
-(menu-bar-mode 1)
+(menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
@@ -150,8 +150,12 @@
 ;; Editing
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
-(global-set-key (kbd "C-c q") 'join-line)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+(defun top-join-line ()
+  "Join the current line with the line beneath it."
+  (interactive)
+  (delete-indentation 1))
+(global-set-key (kbd "C-S-j") 'top-join-line) ;; intellij binding
 
 ;; Text
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
