@@ -9,8 +9,8 @@
 !bin/
 
 .emacs.d/*
-!.emacs.d/init.el
-!.emacs.d/server.el
+!.emacs
+
 
 bin/*
 !bin/rails_test
