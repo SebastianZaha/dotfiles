@@ -130,7 +130,7 @@ augroup END
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-autocmd BufWritePre * lua vim.lsp.buf.format()
+autocmd BufWritePre *.cpp,*.hpp,*.cc,*.hh,*.c,*.h lua vim.lsp.buf.format()
 
 " just disable the annoying Ctrl-C bind in sql files.
 " I'm using it to exit edit mode.
@@ -190,8 +190,9 @@ endif
 
 inoremap <C-6> <C-o><C-^>
 
-" autocomplete
-inoremap <C-/> <C-x><C-o>
+" autocomplete. the binding is actually C-/ but that's how vim wants it
+set completeopt-=preview
+inoremap <C-_> <C-x><C-o>
 
 " insert empty line above/below the cursor
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
