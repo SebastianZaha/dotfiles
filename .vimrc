@@ -130,6 +130,8 @@ augroup END
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+autocmd BufWritePre * lua vim.lsp.buf.format()
+
 " just disable the annoying Ctrl-C bind in sql files.
 " I'm using it to exit edit mode.
 let g:ftplugin_sql_omni_key = '<C-ș>'
