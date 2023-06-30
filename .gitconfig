@@ -38,6 +38,7 @@
     merge = refs/heads/main
 [push]
     default = simple
+	autoSetupRemote = true
 [init]
     defaultBranch = main
 [sendemail]
