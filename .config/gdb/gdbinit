@@ -2,3 +2,5 @@ set auto-load safe-path /
 set history save on
 set history filename ~/.config/gdb/history
 set debuginfod enabled off
+#set detach-on-fork off
+#set follow-fork-mode child

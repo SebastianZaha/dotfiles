@@ -130,7 +130,15 @@ augroup END
 " YAML indentation
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-autocmd BufWritePre *.cpp,*.hpp,*.cc,*.hh,*.c,*.h lua vim.lsp.buf.format()
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!/opt/clang-format-static/clang-format-16
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+" autocmd BufWritePre *.cpp,*.hpp,*.cc,*.hh,*.c,*.h lua vim.lsp.buf.format()
 
 " just disable the annoying Ctrl-C bind in sql files.
 " I'm using it to exit edit mode.

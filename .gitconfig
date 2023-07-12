@@ -1,16 +1,11 @@
 [alias]
-    l = log --pretty=oneline -n 20 --graph
-    s = status -s
+    s = status
+    l = log --stat
     d = diff --patch-with-stat
-    p = !"git pull; git submodule foreach git pull origin master"
-    cl = clone --recursive
     co = checkout
     c = commit -v
-	ca = commit -a -v
-    remotes = remote -v
-    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-    undopush = push -f origin HEAD^:master
-    pom = push origin master
+    ca = commit --amend -v
+	prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
@@ -48,3 +43,5 @@
     smtpserverport = 587
 [diff]
 	algorithm = patience
+[pull]
+	rebase = true
