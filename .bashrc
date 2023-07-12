@@ -25,6 +25,7 @@ alias pg="ps ax | grep"
 alias grep="grep --color=auto"
 
 alias b="bundle exec"
+alias g="git"
 
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath

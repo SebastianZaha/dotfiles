@@ -1,11 +1,12 @@
 [alias]
-    s = status
-    l = log --stat
-    d = diff --patch-with-stat
-    co = checkout
+    ap = add --patch
     c = commit -v
     ca = commit --amend -v
+    co = checkout
+    d = diff --patch-with-stat
+    l = log --stat
 	prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
+    s = status
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
