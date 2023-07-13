@@ -314,6 +314,13 @@ function! NetrwMapping()
   nmap <buffer> h -^
   " into a dir / open file
   nmap <buffer> l <CR>
+
+  " unmap the q-prefixed commands to avoid the delay on quit
+  " should remap if I ever actually use them
+  nunmap <buffer> qb
+  nunmap <buffer> qf
+  nunmap <buffer> qF
+  nunmap <buffer> qL
 endfunction
 augroup netrw_mapping
   autocmd!
