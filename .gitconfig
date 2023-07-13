@@ -4,7 +4,7 @@
     ca = commit --amend -v
     co = checkout
     d = diff --patch-with-stat
-    l = log --stat
+    l = log --stat --max-count=200
 	prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
     s = status
 [apply]
