@@ -349,6 +349,9 @@ if has('nvim')
 		\ endif
 endif
 
+" exit terminal insert mode
+tnoremap <A-esc> <C-\><C-N>
+
 " FZF
 
 nnoremap <silent> <leader><space> :AllFiles<CR>
