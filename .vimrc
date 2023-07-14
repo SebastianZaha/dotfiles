@@ -271,7 +271,7 @@ endfunction
 let &statusline = s:statusline_expr()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Don't close window, when deleting a buffer
+" Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
@@ -305,14 +305,13 @@ if has("unix") && filereadable("/proc/version")
   endif
 endif
 
-
+" Netrw
 " open file in other window (previously focused) by default
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_list_hide= '^\.\/$,\.\.\/$'
 let g:netrw_banner = 0
 
-" Netrw
 function! NetrwMapping()
   " up a dir
   nmap <buffer> h -^
@@ -351,6 +350,27 @@ endif
 
 " exit terminal insert mode
 tnoremap <A-esc> <C-\><C-N>
+
+" termdebug
+nnoremap ,w :call TermDebugSendCommand('where')<CR>
+
+nnoremap ,b :Break<CR>
+nnoremap ,d :Clear<CR>
+
+nnoremap ,n :Over<CR>
+nnoremap ,s :Step<CR>
+nnoremap ,f :Finish<CR>
+nnoremap ,c :Continue<CR>
+nnoremap ,u :Until<CR>
+
+command! -nargs=1 AttachTo call AttachTo(<q-args>)
+function! AttachTo(process_name)
+    packadd termdebug
+    " system('sudo sysctl -w kernel.yama.ptrace_scope=0')
+    let pid = system('pgrep -o '.a:process_name)
+    execute(printf('Termdebug -p %d', pid))
+endfunction
+
 
 " FZF
 
