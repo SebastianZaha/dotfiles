@@ -1,3 +1,8 @@
+" :help index will show you every default key-bindings.
+" :map will show you every custom mapping.
+" :map <leader> will show you every custom <leader> mapping.
+" :verbose nmap will show you every custom normal mode mapping and where they are defined.
+
 set mouse=a
 set nocompatible      " We're running Vim, not Vi!
 set incsearch
@@ -158,10 +163,10 @@ nnoremap <C-s> :update<cr>
 nnoremap Q q
 nnoremap q <esc>:q<cr>
 
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
+inoremap <C-h> <C-O>h
+inoremap <C-l> <C-O>a
+inoremap <C-j> <C-O>j
+inoremap <C-k> <C-O>k
 
 " To use `ALT+{h,j,k,l}` to navigate windows from any mode
 if has("unix")
@@ -195,8 +200,8 @@ if has("unix")
   endif
 endif
 
-
-inoremap <C-6> <C-o><C-^>
+" Enable switching back and forth to previous buffer with C-6 also in insert mode
+inoremap <C-6> <C-O><C-^>
 
 " autocomplete. the binding is actually C-/ but that's how vim wants it
 set completeopt-=preview
@@ -216,6 +221,9 @@ noremap <leader>gs :G<CR><C-w>T
 noremap <Leader>gp :Git push<CR>
 noremap <Leader>d :Gvdiffsplit<CR>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
 
 " auto install vim-plug on first starting vim
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -246,18 +254,21 @@ Plug 'romainl/vim-cool'
 " Plug 'https://gitlab.com/yorickpeterse/vim-paper'
 " Plug 'https://gitlab.com/yorickpeterse/nvim-grey.git'
 " dark
-" Plug 'https://gitlab.com/yorickpeterse/happy_hacking.vim.git'
-" Plug 'cocopon/iceberg.vim'
+ Plug 'https://gitlab.com/yorickpeterse/happy_hacking.vim.git'
+ Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 syntax on " syntax highlighting
-set termguicolors
-set background=light
-colorscheme solar_paper
+"set termguicolors
+"set background=light
+"colorscheme solar_paper
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
+colorscheme happy_hacking
+set nocursorline
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Status line
 function! s:statusline_expr()
   let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
   let ro  = "%{&readonly ? '[RO] ' : ''}"
@@ -270,7 +281,8 @@ function! s:statusline_expr()
 endfunction
 let &statusline = s:statusline_expr()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -292,10 +304,8 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-function! CmdLine(str)
-    call feedkeys(":" . a:str)
-endfunction
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" WSL fixes
 
 if has("unix") && filereadable("/proc/version")
   let lines = readfile("/proc/version")
@@ -305,6 +315,8 @@ if has("unix") && filereadable("/proc/version")
   endif
 endif
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw
 " open file in other window (previously focused) by default
 let g:netrw_browse_split = 4
@@ -317,13 +329,8 @@ function! NetrwMapping()
   nmap <buffer> h -^
   " into a dir / open file
   nmap <buffer> l <CR>
-
-  " unmap the q-prefixed commands to avoid the delay on quit
-  " should remap if I ever actually use them
-  nunmap <buffer> qb
-  nunmap <buffer> qf
-  nunmap <buffer> qF
-  nunmap <buffer> qL
+  " avoid the delay on quit
+  nnoremap <buffer> qq :q<CR>
 endfunction
 augroup netrw_mapping
   autocmd!
@@ -331,6 +338,7 @@ augroup netrw_mapping
 augroup END
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Terminal
 nnoremap <silent> <Leader>` :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 if has('nvim')
@@ -352,17 +360,10 @@ endif
 tnoremap <A-esc> <C-\><C-N>
 
 " termdebug
-nnoremap ,w :call TermDebugSendCommand('where')<CR>
-
 nnoremap ,b :Break<CR>
 nnoremap ,d :Clear<CR>
 
-nnoremap ,n :Over<CR>
-nnoremap ,s :Step<CR>
-nnoremap ,f :Finish<CR>
-nnoremap ,c :Continue<CR>
-nnoremap ,u :Until<CR>
-
+" e.g. for ladybird -> :AttachTo WebContent
 command! -nargs=1 AttachTo call AttachTo(<q-args>)
 function! AttachTo(process_name)
     packadd termdebug
@@ -372,6 +373,7 @@ function! AttachTo(process_name)
 endfunction
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 
 nnoremap <silent> <leader><space> :AllFiles<CR>
