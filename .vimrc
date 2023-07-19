@@ -256,14 +256,16 @@ Plug 'romainl/vim-cool'
 " dark
  Plug 'https://gitlab.com/yorickpeterse/happy_hacking.vim.git'
  Plug 'cocopon/iceberg.vim'
+ Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 syntax on " syntax highlighting
-"set termguicolors
-"set background=light
-"colorscheme solar_paper
+set termguicolors
+set background=dark
+let ayucolor="dark"
+colorscheme ayu
 
-colorscheme happy_hacking
+
 set nocursorline
 
 

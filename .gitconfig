@@ -4,45 +4,47 @@
     ca = commit --amend -v
     co = checkout
     d = diff --patch-with-stat
-    l = log --stat --max-count=200
+    l = log --stat --max-count=200 --pretty=fuller
 	prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
     s = status
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
-[merge]
-   tool = vimdiff
-[difftool "vimdiff"]
-    cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
-[mergetool "vimdiff"]
-    cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
-[user]
-    name = Sebastian Zaha
-    email = sebastian.zaha@gmail.com
-[core]
-    editor = nvim
-    autocrlf = input
-[color]
-    diff = auto
-    status = auto
-    branch = auto
 [branch "master"]
     remote = origin
     merge = refs/heads/master
 [branch "main"]
     remote = origin
     merge = refs/heads/main
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[core]
+    editor = nvim
+    autocrlf = input
+[diff]
+	algorithm = patience
+[difftool "vimdiff"]
+    cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+[merge]
+   tool = vimdiff
+[mergetool "vimdiff"]
+    cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [push]
     default = simple
 	autoSetupRemote = true
 [init]
     defaultBranch = main
+[log]
+	date = iso-local
+[pull]
+	rebase = true
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpuser = sebastian.zaha@gmail.com
     smtpencryption = tls
     smtpserverport = 587
-[diff]
-	algorithm = patience
-[pull]
-	rebase = true
+[user]
+    name = Sebastian Zaha
+    email = sebastian.zaha@gmail.com
