@@ -1,0 +1,24 @@
+source ~/.vimrc
+
+
+" :actionlist <pattern> to find actions
+
+set ideajoin
+
+map q <Action>(CloseContent)
+
+map <leader><space> <Action>(GotoFile)
+map <leader>/ <Action>(FindInPath)
+map <leader>` <Action>(GotoSymbol)
+map <leader>; <Action>(GotoAction)
+
+map <leader>a <Action>(Annotate)
+map <leader>b <Action>(RecentFiles)
+map <leader>rn <Action>(Refactorings.QuickListPopupAction)
+
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <S-Space> <Action>(GotoNextError)
+
+"QuickJavaDoc - Quick Documentation (not only for java, all languages)
+"ShowErrorDescription - Show description of the error under the caret (cursor hovering)
+"QuickImplementations - Quick Definition
