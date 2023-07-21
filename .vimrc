@@ -169,35 +169,32 @@ inoremap <C-j> <C-O>j
 inoremap <C-k> <C-O>k
 
 " To use `ALT+{h,j,k,l}` to navigate windows from any mode
-if has("unix")
-  let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-	:tnoremap ˙ <C-\><C-N><C-w>h
-	:tnoremap ∆ <C-\><C-N><C-w>j
-	:tnoremap ˚ <C-\><C-N><C-w>k
-	:tnoremap ¬ <C-\><C-N><C-w>l
-	:inoremap ˙ <C-\><C-N><C-w>h
-	:inoremap ∆ <C-\><C-N><C-w>j
-	:inoremap ˚ <C-\><C-N><C-w>k
-	:inoremap ¬ <C-\><C-N><C-w>l
-	:nnoremap ˙ <C-w>h
-	:nnoremap ∆ <C-w>j
-	:nnoremap ˚ <C-w>k
-	:nnoremap ¬ <C-w>l
-  else
-	:tnoremap <A-h> <C-\><C-N><C-w>h
-	:tnoremap <A-j> <C-\><C-N><C-w>j
-	:tnoremap <A-k> <C-\><C-N><C-w>k
-	:tnoremap <A-l> <C-\><C-N><C-w>l
-	:inoremap <A-h> <C-\><C-N><C-w>h
-	:inoremap <A-j> <C-\><C-N><C-w>j
-	:inoremap <A-k> <C-\><C-N><C-w>k
-	:inoremap <A-l> <C-\><C-N><C-w>l
-	:nnoremap <A-h> <C-w>h
-	:nnoremap <A-j> <C-w>j
-	:nnoremap <A-k> <C-w>k
-	:nnoremap <A-l> <C-w>l
-  endif
+if has("unix") && system("uname") == "Darwin\n"
+  :tnoremap ˙ <C-\><C-N><C-w>h
+  :tnoremap ∆ <C-\><C-N><C-w>j
+  :tnoremap ˚ <C-\><C-N><C-w>k
+  :tnoremap ¬ <C-\><C-N><C-w>l
+  :inoremap ˙ <C-\><C-N><C-w>h
+  :inoremap ∆ <C-\><C-N><C-w>j
+  :inoremap ˚ <C-\><C-N><C-w>k
+  :inoremap ¬ <C-\><C-N><C-w>l
+  :nnoremap ˙ <C-w>h
+  :nnoremap ∆ <C-w>j
+  :nnoremap ˚ <C-w>k
+  :nnoremap ¬ <C-w>l
+else
+  :tnoremap <A-h> <C-\><C-N><C-w>h
+  :tnoremap <A-j> <C-\><C-N><C-w>j
+  :tnoremap <A-k> <C-\><C-N><C-w>k
+  :tnoremap <A-l> <C-\><C-N><C-w>l
+  :inoremap <A-h> <C-\><C-N><C-w>h
+  :inoremap <A-j> <C-\><C-N><C-w>j
+  :inoremap <A-k> <C-\><C-N><C-w>k
+  :inoremap <A-l> <C-\><C-N><C-w>l
+  :nnoremap <A-h> <C-w>h
+  :nnoremap <A-j> <C-w>j
+  :nnoremap <A-k> <C-w>k
+  :nnoremap <A-l> <C-w>l
 endif
 
 " Enable switching back and forth to previous buffer with C-6 also in insert mode

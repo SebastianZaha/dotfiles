@@ -1,9 +1,18 @@
-source ~/.vimrc
-
+" IJ provides IdeaVim: track action Ids command to show the id of the executed actions.
+" This command can be found in "Search everywhere" (double shift).
 
 " :actionlist <pattern> to find actions
 
+" All ideavim mapped commands:
+" https://github.com/JetBrains/ideavim/blob/master/src/main/java/com/maddyhome/idea/vim/package-info.java
+
+source ~/.vimrc
+
 set ideajoin
+set ideastatusicon=gray
+
+inoremap <C-s> <C-O>:w<cr><esc>
+nnoremap <C-s> :w<cr>
 
 map q <Action>(CloseContent)
 
@@ -11,12 +20,24 @@ map <leader><space> <Action>(GotoFile)
 map <leader>/ <Action>(FindInPath)
 map <leader>` <Action>(GotoSymbol)
 map <leader>; <Action>(GotoAction)
+map <leader>n <Action>(NextDiff)
+
+map <A-h> <C-w>h
+map <A-j> <C-w>j
+map <A-k> <C-w>k
+map <A-l> <C-w>l
+map <A-1> <Action>(GoToTab1)
+map <A-2> <Action>(GoToTab2)
+map <A-3> <Action>(GoToTab3)
+map <A-4> <Action>(GoToTab4)
+map <A-5> <Action>(GoToTab5)
+map <A-6> <Action>(GoToTab6)
 
 map <leader>a <Action>(Annotate)
 map <leader>b <Action>(RecentFiles)
+map <leader>d <Action>(Compare.SameVersion)
 map <leader>rn <Action>(Refactorings.QuickListPopupAction)
 
-map <leader>z <Action>(ToggleDistractionFreeMode)
 map <S-Space> <Action>(GotoNextError)
 
 "QuickJavaDoc - Quick Documentation (not only for java, all languages)
