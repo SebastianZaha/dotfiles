@@ -1,5 +1,6 @@
 [alias]
     ap = add --patch
+    b = branch
     c = commit -v
     ca = commit --amend -v
     co = checkout
