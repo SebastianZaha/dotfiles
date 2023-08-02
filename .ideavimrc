@@ -36,6 +36,7 @@ map <A-6> <Action>(GoToTab6)
 map <leader>a <Action>(Annotate)
 map <leader>b <Action>(RecentFiles)
 map <leader>d <Action>(Compare.SameVersion)
+map <leader>5 <Action>(XDebugger.AttachToProcess)
 map <leader>rn <Action>(Refactorings.QuickListPopupAction)
 
 map <S-Space> <Action>(GotoNextError)
