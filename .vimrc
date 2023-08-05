@@ -216,6 +216,7 @@ map <Leader>3 :diffget REMOTE<CR>
 " git
 noremap <leader>gs :G<CR><C-w>T
 noremap <Leader>gp :Git push<CR>
+noremap <Leader>gl :Git l<CR><C-w>T
 noremap <Leader>d :Gvdiffsplit<CR>
 
 
@@ -254,6 +255,8 @@ Plug 'romainl/vim-cool'
  Plug 'https://gitlab.com/yorickpeterse/happy_hacking.vim.git'
  Plug 'cocopon/iceberg.vim'
  Plug 'ayu-theme/ayu-vim'
+ Plug 'rakr/vim-one'
+ Plug 'chiendo97/intellij.vim'
 call plug#end()
 
 syntax on " syntax highlighting
