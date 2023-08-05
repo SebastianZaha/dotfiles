@@ -214,10 +214,12 @@ map <Leader>2 :diffget BASE<CR>
 map <Leader>3 :diffget REMOTE<CR>
 
 " git
-noremap <leader>gs :G<CR><C-w>T
-noremap <Leader>gp :Git push<CR>
-noremap <Leader>gl :Git l<CR><C-w>T
 noremap <Leader>d :Gvdiffsplit<CR>
+noremap <Leader>ga :Git blame<CR>
+noremap <Leader>gl :Git l<CR><C-w>T
+noremap <Leader>gp :Git push<CR>
+noremap <leader>gs :G<CR><C-w>T
+noremap <leader>gw :GBrowse<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,11 +239,17 @@ if has('nvim')
   Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
   Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
   Plug 'L3MON4D3/LuaSnip' " Snippets plugin
+
+  Plug 'sakhnik/nvim-gdb'
+  let g:nvimgdb_use_find_executables=0
+  let g:nvimgdb_use_cmake_to_find_executables=0
 end 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " github integration
+
 Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go'
 " clears search highlighting after you finish incremental search  
@@ -409,8 +417,16 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>)
 
-" starting vim in the 'root' of a project that has a '.vimlocal' file
-" will load the project specific configuration
-if filereadable('.vimlocal')
-	source .vimlocal
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" per project / project type configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable('bin/rails')
+    exe 'compiler rake'
+    set makeprg=bin/rails
+
+    noremap <leader>tt :Make t<CR>
+    noremap <leader>tf :Make t %<CR>
+    noremap <leader>tl :execute 'Make t %:' . line('.')<CR>
 endif
+
