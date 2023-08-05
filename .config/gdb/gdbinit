@@ -4,3 +4,14 @@ set history filename ~/.config/gdb/history
 set debuginfod enabled off
 #set detach-on-fork off
 #set follow-fork-mode child
+
+python
+
+def symbol_value(name):
+    gdb.lookup_symbol(name)[0].value(gdb.selected_frame())
+
+
+def members(val):
+    return val.type.keys()
+
+end
