@@ -102,7 +102,9 @@ noremap <C-w>b :Bclose<cr>
 noremap <leader>cd :cd %:p:h:gs/ /\\ /<cr>:pwd<cr>
 
 " Return to last edit position when opening files
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" copied from :h last-position-jump
+autocmd BufRead * autocmd FileType <buffer> ++once
+    \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
 
 " 'thin' cursor in insert mode https://stackoverflow.com/a/42118416/1306453
 let &t_SI = "\e[6 q"
