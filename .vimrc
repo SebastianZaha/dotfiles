@@ -214,7 +214,7 @@ map <Leader>2 :diffget BASE<CR>
 map <Leader>3 :diffget REMOTE<CR>
 
 " git
-noremap <Leader>d :Gvdiffsplit<CR>
+noremap <Leader>gd :Gvdiffsplit<CR>
 noremap <Leader>ga :Git blame<CR>
 noremap <Leader>gl :Git l<CR><C-w>T
 noremap <Leader>gp :Git push<CR>
