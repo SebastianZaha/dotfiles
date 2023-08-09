@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# https://superuser.com/a/1695537/1226024
+# $1 file basename. will optimize $1.gif to $1.small.gif 
+optimize_gif() {
+  ffmpeg -y -filter_complex "fps=30,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=32[p];[s1][p]paletteuse=dither=bayer" -i "$1".gif "$1".small.gif
+}
+
 # $1 orgname
 github_clone_all_in_org() {
   for repo in $(gh repo list "$1" --json name -q .[].name); do gh repo clone "$1"/"$repo"; done
