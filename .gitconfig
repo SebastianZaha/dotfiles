@@ -8,6 +8,20 @@
     l = log --stat --max-count=200 --pretty=fuller
 	prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
     s = status
+    f = fetch --all --prune-tags --prune
+
+    # Checkout a GitHub PR from upstream as a `pull/####` branch. Usage: git checkout-pr 1234
+    checkout-pr = "!f() { \
+        git fetch upstream && \
+        git branch -D pull/$1 2>/dev/null ; \
+        git fetch upstream pull/$1/head:pull/$1 && git checkout pull/$1; \
+    }; f"
+
+    # Remove all `pull/####` branches
+    clear-prs = "!f() { \
+        eval $(git for-each-ref refs/heads/pull/ --shell --format='git branch -D %(refname:short);'); \
+    }; f"
+
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
@@ -25,22 +39,24 @@
     editor = nvim
     autocrlf = input
 [diff]
-	algorithm = patience
-[difftool "vimdiff"]
-    cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+    algorithm = patience
+#[difftool "vimdiff"]
+#    cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
 [merge]
-   tool = vimdiff
-[mergetool "vimdiff"]
-    cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+    tool = nvim
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool]
+    prompt = false # automatically launch merge tool without displaying a prompt
 [push]
     default = simple
-	autoSetupRemote = true
+    autoSetupRemote = true
 [init]
     defaultBranch = main
 [log]
-	date = iso-local
+    date = iso-local
 [pull]
-	rebase = true
+    rebase = true
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpuser = sebastian.zaha@gmail.com
