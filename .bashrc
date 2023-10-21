@@ -3,8 +3,8 @@
 case "$(uname -s)" in
 	Darwin)
 		alias ls="ls -G"
-		# -l use a long listing format
-		alias ll="ls -l --human-readable --all -G"
+		# -l use a long listing format; h = KB/MB/GB; a = all; G = color
+		alias ll="ls -alhG"
 		alias netstatosx="sudo lsof -i -n -P | grep TCP"
 		;;
 	Linux)
