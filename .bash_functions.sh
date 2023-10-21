@@ -50,8 +50,11 @@ setup_base() {
 setup_arch() {
   pacman -S --needed \
     pkgstats \
-    neovim screen git github-cli curl wget openssl openssh mc man sudo htop lsof \
-    base-devel ripgrep go cmake \
+    neovim tmux git curl wget openssl openssh mc man sudo htop lsof \
+    base-devel ripgrep go cmake
+
+  # desktop env
+  pacman -S --needed \
     firefox \
     noto-fonts-emoji noto-fonts noto-fonts-extra noto-fonts-cjk \
     ttf-jetbrains-mono \
