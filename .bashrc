@@ -71,6 +71,14 @@ export RIPGREP_CONFIG_PATH=~/.ripgrep
 # .gitignored local configuration
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
 
+# Arch .bashrc_local example with fixes
+#
+# export _JAVA_AWT_WM_NONREPARENTING=1
+# export QT_SCALE_FACTOR=2
+# export GDK_SCALE=2
+# [ "$(tty)" = "/dev/tty1" ] && exec startx
+
+
 # only for interactive shells
 if [[ $- == *i* ]]; then
 	# disable Ctrl-s to 'lock' the tty 

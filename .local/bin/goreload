@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://github.com/alexedwards/go-reload@aabe19d
+# https://github.com/alexedwards/go-reload (@aabe19d)
 
 function monitor() {
   if [ "$2" = "true" ];  then
