@@ -59,3 +59,8 @@
 [user]
     name = Sebastian Zaha
     email = sebastian.zaha@gmail.com
+    signingkey = /home/sebi/.ssh/id_rsa_with_pass.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
