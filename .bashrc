@@ -27,6 +27,8 @@ alias grep="grep --color=auto"
 alias b="bundle exec"
 alias g="git"
 
+alias serve="ruby -run -e httpd . -p 9090"
+
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 export PATH=$PATH:$HOME/.local/bin
