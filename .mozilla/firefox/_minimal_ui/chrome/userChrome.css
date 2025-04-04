@@ -7,8 +7,8 @@
   visibility: collapse;
 }
 
+/*
 #nav-bar {
-  /* customize this value. */
   --navbar-margin: -30px;
 
   margin-top: var(--navbar-margin);
@@ -25,4 +25,4 @@
   margin-bottom: var(--navbar-margin);
   z-index: 100;
   opacity: 1;
-}
+}*/
