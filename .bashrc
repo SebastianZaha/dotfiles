@@ -29,6 +29,9 @@ alias g="git"
 
 alias serve="ruby -run -e httpd . -p 9090"
 
+alias ff_work="firefox -P sebi_work"
+alias ff="firefox -P default-release"
+
 export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 export PATH=$PATH:$HOME/.local/bin
@@ -92,3 +95,6 @@ if [[ $- == *i* ]]; then
 
 	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
+
+# node version manager
+source /usr/share/nvm/init-nvm.sh
