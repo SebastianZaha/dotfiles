@@ -1,0 +1,1 @@
+firefox -P default-release
