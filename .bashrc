@@ -33,7 +33,7 @@ export  GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/.local/gopath
 export PATH=$PATH:$HOME/.local/bin
 if [[ ! -v TERMUX_VERSION ]]; then
-    export PATH=$PATH:/usr/local/go/bin:usr/local/mysql/bin:$HOME/devel/_android/platform-tools
+    export PATH=$PATH:/usr/local/go/bin:/usr/local/mysql/bin:$HOME/devel/_android/platform-tools:$HOME/.local/npm-global/bin
 fi
 export EDITOR="nvim"
 
