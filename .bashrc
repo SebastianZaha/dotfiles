@@ -92,6 +92,3 @@ if [[ $- == *i* ]]; then
 
 	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
-
-# node version manager
-[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
