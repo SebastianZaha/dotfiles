@@ -63,5 +63,3 @@
     email = sebastian.zaha@gmail.com
 [gpg]
 	format = ssh
-[commit]
-	gpgsign = true
