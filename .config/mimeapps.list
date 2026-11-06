@@ -15,15 +15,21 @@ application/x-extension-shtml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 application/pdf=firefox.desktop
+x-scheme-handler/jetbrains=jetbrainsd.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/codex=chatgpt.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]
-text/calendar=thunderbird.desktop;firefox.desktop;
+text/calendar=org.mozilla.Thunderbird.desktop;thunderbird.desktop;firefox.desktop;
 application/pdf=firefox.desktop;
 image/jpeg=org.xfce.ristretto.desktop;
 text/csv=nvim.desktop;
 video/mp4=vlc.desktop;
 text/markdown=nvim.desktop;
-image/png=krita_png.desktop;org.gnome.gThumb.desktop;org.xfce.ristretto.desktop;swappy.desktop;
+image/png=org.xfce.ristretto.desktop;krita_png.desktop;org.gnome.gThumb.desktop;swappy.desktop;
 application/xml=vim.desktop;
 video/x-matroska=vlc.desktop;
 text/plain=vim.desktop;
+video/matroska=org.xfce.Parole.desktop;
+text/x-shellscript=nvim.desktop;

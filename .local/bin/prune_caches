@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Prune tool caches that are rebuilt on demand.
+
+avail() { df --output=avail -B1 / | tail -1; }
+before=$(avail)
+
+echo "== uv"; UV_LOCK_TIMEOUT=5 uv cache prune || echo "skipped: a running 'uv run' holds the cache lock"
+echo "== npm"; npm cache clean --force
+echo "== go"; go clean -modcache
+echo "== yay"; yay -Sc --aur --noconfirm
+
+echo "Freed $(numfmt --to=iec -- $(( $(avail) - before )))"
